@@ -1,0 +1,487 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "VeriPulse API",
+    "description": "High-speed B2B email verification, disposable domain detection, and fraud risk scoring API.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "General"
+        ],
+        "summary": "Root",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "General"
+        ],
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/verify": {
+      "get": {
+        "tags": [
+          "Verification"
+        ],
+        "summary": "Verify Email",
+        "description": "Real-time single email verification and fraud risk analysis.\nEvaluates RFC syntax, DNS/MX deliverability, disposable domain blocklists, and role accounts.",
+        "operationId": "verify_email_v1_verify_get",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Email address to evaluate (e.g. user@domain.com)",
+              "title": "Email"
+            },
+            "description": "Email address to evaluate (e.g. user@domain.com)"
+          },
+          {
+            "name": "x-rapidapi-proxy-secret",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Rapidapi-Proxy-Secret"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailVerificationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/verify-batch": {
+      "post": {
+        "tags": [
+          "Verification"
+        ],
+        "summary": "Verify Batch",
+        "description": "Asynchronous parallel batch verification for up to 50 emails in a single request.\nIdeal for list cleaning and bulk signup validation.",
+        "operationId": "verify_batch_v1_verify_batch_post",
+        "parameters": [
+          {
+            "name": "x-rapidapi-proxy-secret",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Rapidapi-Proxy-Secret"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchVerificationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchVerificationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/domain-health": {
+      "get": {
+        "tags": [
+          "Domain Health"
+        ],
+        "summary": "Domain Health",
+        "description": "Fast domain MX routing inspection and disposable provider status.",
+        "operationId": "domain_health_v1_domain_health_get",
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Domain name to check (e.g. stripe.com)",
+              "title": "Domain"
+            },
+            "description": "Domain name to check (e.g. stripe.com)"
+          },
+          {
+            "name": "x-rapidapi-proxy-secret",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Rapidapi-Proxy-Secret"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DomainHealthResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BatchVerificationRequest": {
+        "properties": {
+          "emails": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 50,
+            "minItems": 1,
+            "title": "Emails",
+            "description": "List of emails to verify (max 50 per batch)"
+          }
+        },
+        "type": "object",
+        "required": [
+          "emails"
+        ],
+        "title": "BatchVerificationRequest"
+      },
+      "BatchVerificationResponse": {
+        "properties": {
+          "total_processed": {
+            "type": "integer",
+            "title": "Total Processed",
+            "description": "Number of emails evaluated in the batch"
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/EmailVerificationResponse"
+            },
+            "type": "array",
+            "title": "Results",
+            "description": "Individual verification results"
+          }
+        },
+        "type": "object",
+        "required": [
+          "total_processed",
+          "results"
+        ],
+        "title": "BatchVerificationResponse"
+      },
+      "DomainHealthResponse": {
+        "properties": {
+          "domain": {
+            "type": "string",
+            "title": "Domain",
+            "description": "Domain queried"
+          },
+          "has_mail_server": {
+            "type": "boolean",
+            "title": "Has Mail Server",
+            "description": "Whether the domain can accept emails"
+          },
+          "is_disposable": {
+            "type": "boolean",
+            "title": "Is Disposable",
+            "description": "Whether the domain is on the disposable blocklist"
+          },
+          "primary_mail_server": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Primary Mail Server",
+            "description": "Primary MX exchange hostname"
+          },
+          "mx_records": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Mx Records",
+            "description": "All MX records found"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "description": "HEALTHY, NO_MAIL_SERVER, or DISPOSABLE"
+          }
+        },
+        "type": "object",
+        "required": [
+          "domain",
+          "has_mail_server",
+          "is_disposable",
+          "status"
+        ],
+        "title": "DomainHealthResponse"
+      },
+      "EmailVerificationResponse": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "title": "Email",
+            "description": "The queried email address"
+          },
+          "normalized_email": {
+            "type": "string",
+            "title": "Normalized Email",
+            "description": "Standardized lowercase email address"
+          },
+          "is_valid": {
+            "type": "boolean",
+            "title": "Is Valid",
+            "description": "Overall deliverability status (syntax valid & active mail server)"
+          },
+          "is_syntax_valid": {
+            "type": "boolean",
+            "title": "Is Syntax Valid",
+            "description": "Conforms to standard RFC email formatting"
+          },
+          "is_disposable": {
+            "type": "boolean",
+            "title": "Is Disposable",
+            "description": "True if domain is a known burner/disposable email provider"
+          },
+          "has_mx_records": {
+            "type": "boolean",
+            "title": "Has Mx Records",
+            "description": "True if domain has active mail routing (MX or A fallback)"
+          },
+          "is_free_provider": {
+            "type": "boolean",
+            "title": "Is Free Provider",
+            "description": "True if provided by consumer webmail (Gmail, Yahoo, Outlook, etc.)"
+          },
+          "is_role_account": {
+            "type": "boolean",
+            "title": "Is Role Account",
+            "description": "True if account is generic alias (e.g., admin, support, sales)"
+          },
+          "did_you_mean": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Did You Mean",
+            "description": "Suggested domain correction if a common typo was detected"
+          },
+          "risk_score": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Risk Score",
+            "description": "Risk rating from 0 (safe) to 100 (high risk/fraudulent)"
+          },
+          "risk_level": {
+            "type": "string",
+            "title": "Risk Level",
+            "description": "Risk tier: LOW, MEDIUM, HIGH, or CRITICAL"
+          },
+          "recommended_action": {
+            "type": "string",
+            "title": "Recommended Action",
+            "description": "Recommended signup action: ALLOW, FLAG_FOR_REVIEW, or BLOCK"
+          },
+          "reasons": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Reasons",
+            "description": "Explanatory signals contributing to the score"
+          },
+          "mx_records": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Mx Records",
+            "description": "Discovered mail exchange records"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "normalized_email",
+          "is_valid",
+          "is_syntax_valid",
+          "is_disposable",
+          "has_mx_records",
+          "is_free_provider",
+          "is_role_account",
+          "risk_score",
+          "risk_level",
+          "recommended_action"
+        ],
+        "title": "EmailVerificationResponse"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}
