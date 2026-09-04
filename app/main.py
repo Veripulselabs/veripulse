@@ -1,11 +1,6 @@
-"""
-VeriPulse API - Main FastAPI Entry Point.
-Production-ready microservice designed for seamless RapidAPI listing.
-"""
-
 import asyncio
 from typing import Optional
-from fastapi import FastAPI, Query, Header, HTTPException, status
+from fastapi import FastAPI, Query, Header, HTTPException, status, Body
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
@@ -14,12 +9,16 @@ from app.models import (
     EmailVerificationResponse,
     BatchVerificationRequest,
     BatchVerificationResponse,
-    DomainHealthResponse
+    DomainHealthResponse,
+    PhoneValidationResponse,
+    TrustScoreRequest,
+    TrustScoreResponse
 )
 from core.email_checker import EmailChecker
 from core.disposable_filter import is_disposable_domain
 from core.dns_resolver import check_mx
 from core.risk_engine import RiskEngine
+from core.phone_checker import PhoneChecker
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -29,7 +28,6 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
-# Enable CORS for cross-origin browser queries
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -39,10 +37,6 @@ app.add_middleware(
 )
 
 def verify_rapidapi_secret(x_rapidapi_proxy_secret: Optional[str] = Header(None)):
-    """
-    Validates that incoming request originated from RapidAPI proxy when configured.
-    If RAPIDAPI_PROXY_SECRET is unset (e.g. local dev), requests are allowed.
-    """
     if settings.RAPIDAPI_PROXY_SECRET:
         if not x_rapidapi_proxy_secret or x_rapidapi_proxy_secret != settings.RAPIDAPI_PROXY_SECRET:
             raise HTTPException(
@@ -52,8 +46,6 @@ def verify_rapidapi_secret(x_rapidapi_proxy_secret: Optional[str] = Header(None)
     return True
 
 async def _process_single_email(email_str: str) -> EmailVerificationResponse:
-    """Core evaluation pipeline for an individual email address."""
-    # 1. Parse and validate syntax
     syntax_result = EmailChecker.parse_and_validate_syntax(email_str)
     
     if not syntax_result["is_syntax_valid"]:
@@ -85,19 +77,14 @@ async def _process_single_email(email_str: str) -> EmailVerificationResponse:
     local_part = syntax_result["local_part"]
     domain = syntax_result["domain"]
 
-    # 2. Parallel domain checks: disposable lookup, typo detection, role account, free provider
     is_disposable = is_disposable_domain(domain)
     is_role = EmailChecker.check_role_account(local_part)
     is_free = EmailChecker.check_free_provider(domain)
     typo_suggestion = EmailChecker.suggest_typo_correction(domain)
 
-    # 3. DNS MX resolution
     has_mx, mx_records, primary_host = await check_mx(domain)
-
-    # 4. Overall validity: syntax must be valid AND domain must have active mail routing
     is_valid = syntax_result["is_syntax_valid"] and has_mx and not is_disposable
 
-    # 5. Composite Risk Score
     risk = RiskEngine.calculate_risk(
         is_syntax_valid=True,
         is_disposable=is_disposable,
@@ -132,8 +119,9 @@ async def root():
         "version": settings.VERSION,
         "docs": "/docs",
         "endpoints": {
-            "verify_single": "/v1/verify?email=user@example.com",
-            "verify_batch": "/v1/verify-batch",
+            "trust_score": "/v1/trust-score (GET & POST)",
+            "verify_email": "/v1/verify?email=user@example.com",
+            "validate_phone": "/v1/phone/validate?phone=+14155552671",
             "domain_health": "/v1/domain-health?domain=example.com"
         }
     }
@@ -142,54 +130,143 @@ async def root():
 async def health():
     return {"status": "healthy"}
 
-@app.get("/v1/verify", response_model=EmailVerificationResponse, tags=["Verification"])
-async def verify_email(
-    email: str = Query(..., description="Email address to evaluate (e.g. user@domain.com)"),
+# --- Flagship Trust Intelligence Endpoint ---
+
+@app.post("/v1/trust-score", response_model=TrustScoreResponse, tags=["Trust Intelligence"])
+@app.get("/v1/trust-score", response_model=TrustScoreResponse, tags=["Trust Intelligence"])
+async def evaluate_trust_score(
+    email: Optional[str] = Query(None, description="Email address to evaluate"),
+    phone: Optional[str] = Query(None, description="Phone number to evaluate"),
+    country_code: Optional[str] = Query("US", description="Default ISO country code for phone number"),
+    payload: Optional[TrustScoreRequest] = Body(None),
     x_rapidapi_proxy_secret: Optional[str] = Header(None)
 ):
     """
-    Real-time single email verification and fraud risk analysis.
-    Evaluates RFC syntax, DNS/MX deliverability, disposable domain blocklists, and role accounts.
+    Unified Signup Protection & Fraud Scoring Engine.
+    Combines email deliverability, disposable domain checks, phone line intelligence,
+    and VoIP carrier detection into a single, definitive 0-100 Trust Score.
     """
+    verify_rapidapi_secret(x_rapidapi_proxy_secret)
+    
+    # Support both GET query params and POST JSON body
+    target_email = (payload.email if payload and payload.email else email) or None
+    target_phone = (payload.phone if payload and payload.phone else phone) or None
+    target_country = (payload.country_code if payload and payload.country_code else country_code) or "US"
+
+    if not target_email and not target_phone:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="At least one identifier (email or phone) must be provided for trust evaluation."
+        )
+
+    email_res: Optional[EmailVerificationResponse] = None
+    phone_res: Optional[PhoneValidationResponse] = None
+    signals = []
+
+    # Run evaluations concurrently
+    tasks = []
+    if target_email:
+        tasks.append(_process_single_email(target_email))
+    if target_phone:
+        tasks.append(asyncio.to_thread(PhoneChecker.validate, target_phone, target_country))
+
+    results = await asyncio.gather(*tasks)
+
+    idx = 0
+    if target_email:
+        email_res = results[idx]
+        idx += 1
+    if target_phone:
+        phone_res = results[idx]
+
+    # Calculate Composite Trust & Risk Score
+    composite_risk = 0
+    if email_res and phone_res:
+        # Cross-signal synthesis
+        composite_risk = max(email_res.risk_score, phone_res.risk_score)
+        if email_res.is_disposable and (phone_res.carrier and phone_res.carrier.is_virtual):
+            composite_risk = 98
+            signals.append("CRITICAL: Both email and phone belong to disposable/virtual services (bot pattern)")
+        elif email_res.is_disposable:
+            composite_risk = max(composite_risk, 90)
+            signals.append("Disposable/burner email domain detected")
+        elif phone_res.carrier and phone_res.carrier.is_virtual:
+            composite_risk = max(composite_risk, 85)
+            signals.append("VoIP/virtual phone number detected")
+            
+        signals.extend([f"Email: {r}" for r in email_res.reasons])
+        signals.extend([f"Phone: {r}" for r in phone_res.reasons])
+        
+    elif email_res:
+        composite_risk = email_res.risk_score
+        signals.extend([f"Email: {r}" for r in email_res.reasons])
+        
+    elif phone_res:
+        composite_risk = phone_res.risk_score
+        signals.extend([f"Phone: {r}" for r in phone_res.reasons])
+
+    trust_score = max(0, min(100, 100 - composite_risk))
+
+    if composite_risk >= 80:
+        risk_level = "HIGH"
+        action = "BLOCK"
+    elif composite_risk >= 30:
+        risk_level = "MEDIUM"
+        action = "FLAG_FOR_REVIEW"
+    else:
+        risk_level = "LOW"
+        action = "ALLOW"
+
+    return TrustScoreResponse(
+        trust_score=trust_score,
+        risk_score=composite_risk,
+        risk_level=risk_level,
+        recommended_action=action,
+        signals=signals,
+        email_intelligence=email_res,
+        phone_intelligence=phone_res
+    )
+
+# --- Individual Micro-Endpoints ---
+
+@app.get("/v1/verify", response_model=EmailVerificationResponse, tags=["Email Intelligence"])
+async def verify_email(
+    email: str = Query(..., description="Email address to evaluate"),
+    x_rapidapi_proxy_secret: Optional[str] = Header(None)
+):
     verify_rapidapi_secret(x_rapidapi_proxy_secret)
     return await _process_single_email(email)
 
-@app.post("/v1/verify-batch", response_model=BatchVerificationResponse, tags=["Verification"])
+@app.post("/v1/verify-batch", response_model=BatchVerificationResponse, tags=["Email Intelligence"])
 async def verify_batch(
     payload: BatchVerificationRequest,
     x_rapidapi_proxy_secret: Optional[str] = Header(None)
 ):
-    """
-    Asynchronous parallel batch verification for up to 50 emails in a single request.
-    Ideal for list cleaning and bulk signup validation.
-    """
     verify_rapidapi_secret(x_rapidapi_proxy_secret)
     tasks = [_process_single_email(em) for em in payload.emails]
     results = await asyncio.gather(*tasks)
-    return BatchVerificationResponse(
-        total_processed=len(results),
-        results=results
-    )
+    return BatchVerificationResponse(total_processed=len(results), results=results)
 
-@app.get("/v1/domain-health", response_model=DomainHealthResponse, tags=["Domain Health"])
+@app.get("/v1/phone/validate", response_model=PhoneValidationResponse, tags=["Phone Intelligence"])
+async def validate_phone(
+    phone: str = Query(..., description="Phone number to evaluate (e.g. +14155552671)"),
+    country_code: Optional[str] = Query("US", description="Default ISO country code"),
+    x_rapidapi_proxy_secret: Optional[str] = Header(None)
+):
+    verify_rapidapi_secret(x_rapidapi_proxy_secret)
+    return PhoneChecker.validate(phone, country_code)
+
+@app.get("/v1/domain-health", response_model=DomainHealthResponse, tags=["Domain Intelligence"])
 async def domain_health(
     domain: str = Query(..., description="Domain name to check (e.g. stripe.com)"),
     x_rapidapi_proxy_secret: Optional[str] = Header(None)
 ):
-    """
-    Fast domain MX routing inspection and disposable provider status.
-    """
     verify_rapidapi_secret(x_rapidapi_proxy_secret)
     domain_clean = domain.lower().strip()
     is_disp = is_disposable_domain(domain_clean)
     has_mx, mx_list, primary_host = await check_mx(domain_clean)
 
-    if is_disp:
-        status_label = "DISPOSABLE"
-    elif has_mx:
-        status_label = "HEALTHY"
-    else:
-        status_label = "NO_MAIL_SERVER"
+    status_label = "DISPOSABLE" if is_disp else ("HEALTHY" if has_mx else "NO_MAIL_SERVER")
 
     return DomainHealthResponse(
         domain=domain_clean,
