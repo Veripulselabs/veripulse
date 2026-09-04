@@ -17,8 +17,8 @@ class Settings(BaseModel):
     # DNS timeout in seconds
     DNS_TIMEOUT: float = float(os.getenv("DNS_TIMEOUT", "2.0"))
     
-    # Host & Port configuration - Bound to 127.0.0.1 (loopback) so outside traffic cannot touch it locally
-    HOST: str = os.getenv("HOST", "127.0.0.1")
+    # Host & Port configuration
+    HOST: str = os.getenv("HOST", "0.0.0.0")
     PORT: int = int(os.getenv("PORT", "8000"))
 
 settings = Settings()

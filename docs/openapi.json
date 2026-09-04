@@ -1,9 +1,9 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "VeriPulse API",
-    "description": "High-speed B2B email verification, disposable domain detection, and fraud risk scoring API.",
-    "version": "1.0.0"
+    "title": "VeriPulse Trust Intelligence API",
+    "description": "Enterprise-grade Trust Intelligence combining email deliverability, disposable domain detection, phone carrier intelligence, and VoIP fraud scoring into a unified 0-100 Trust Score.",
+    "version": "2.0.0"
   },
   "paths": {
     "/": {
