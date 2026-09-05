@@ -7,6 +7,7 @@
 # ⚡ VeriPulse Labs
 ### Ultra-Fast Real-Time Trust Intelligence & Fraud Prevention API
 
+[![Website](https://img.shields.io/badge/Website-veripulselabs.com-0071e3?style=for-the-badge&logo=googlechrome&logoColor=white)](https://veripulselabs.com)
 [![RapidAPI](https://img.shields.io/badge/RapidAPI-Marketplace%20Live-0052CC?style=for-the-badge&logo=rapidapi)](https://rapidapi.com/jasdebarreau3/api/veripulse-email-verification-and-fraud-detection)
 [![Latency](https://img.shields.io/badge/Latency-%3C40ms-brightgreen?style=for-the-badge)](https://rapidapi.com/jasdebarreau3/api/veripulse-email-verification-and-fraud-detection)
 [![Python](https://img.shields.io/badge/Python-3.11+-blue?style=for-the-badge&logo=python)](https://python.org)
@@ -18,7 +19,9 @@
 
 **Protect your signup funnels, eradicate disposable bot accounts, and ensure high email deliverability with a single API call.**
 
-[Get Free API Key on RapidAPI](https://rapidapi.com/jasdebarreau3/api/veripulse-email-verification-and-fraud-detection) • [API Documentation](https://rapidapi.com/jasdebarreau3/api/veripulse-email-verification-and-fraud-detection/details) • [Pricing Plans](https://rapidapi.com/jasdebarreau3/api/veripulse-email-verification-and-fraud-detection/pricing)
+👉 **[Live Storefront & Interactive Demo: https://veripulselabs.com](https://veripulselabs.com)** 👈
+
+[Official Website](https://veripulselabs.com) • [Get Free API Key on RapidAPI](https://rapidapi.com/jasdebarreau3/api/veripulse-email-verification-and-fraud-detection) • [API Documentation](https://veripulselabs.com/docs) • [Pricing Plans](https://rapidapi.com/jasdebarreau3/api/veripulse-email-verification-and-fraud-detection/pricing)
 
 </div>
 
