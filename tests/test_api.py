@@ -1,4 +1,4 @@
-﻿import pytest
+import pytest
 from httpx import AsyncClient, ASGITransport
 from app.main import app
 
@@ -19,6 +19,15 @@ async def test_root_endpoint():
     data = response.json()
     assert "VeriPulse" in data["service"]
     assert "endpoints" in data
+
+@pytest.mark.anyio
+async def test_root_endpoint_html():
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as ac:
+        response = await ac.get("/", headers={"Accept": "text/html,application/xhtml+xml"})
+    assert response.status_code == 200
+    assert "text/html" in response.headers.get("content-type", "")
+    assert "VeriPulse" in response.text
 
 @pytest.mark.anyio
 async def test_verify_disposable_email():

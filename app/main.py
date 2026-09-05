@@ -1,8 +1,8 @@
 import asyncio
 from typing import Optional
-from fastapi import FastAPI, Query, Header, HTTPException, status, Body
+from fastapi import FastAPI, Query, Header, HTTPException, status, Body, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 
 from app.config import settings
 from app.models import (
@@ -39,8 +39,11 @@ app.add_middleware(
 from fastapi.staticfiles import StaticFiles
 import os
 assets_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets")
+site_assets_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "site", "assets")
 if os.path.exists(assets_dir):
     app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
+if os.path.exists(site_assets_dir):
+    app.mount("/site/assets", StaticFiles(directory=site_assets_dir), name="site_assets")
 
 def verify_rapidapi_secret(x_rapidapi_proxy_secret: Optional[str] = Header(None)):
     if settings.RAPIDAPI_PROXY_SECRET:
@@ -118,7 +121,12 @@ async def _process_single_email(email_str: str) -> EmailVerificationResponse:
     )
 
 @app.get("/", tags=["General"])
-async def root():
+async def root(request: Request):
+    accept_header = request.headers.get("accept", "")
+    site_index = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "site", "index.html")
+    if "text/html" in accept_header and os.path.exists(site_index):
+        return FileResponse(site_index, media_type="text/html")
+
     return {
         "service": settings.PROJECT_NAME,
         "status": "online",
@@ -131,6 +139,13 @@ async def root():
             "domain_health": "/v1/domain-health?domain=example.com"
         }
     }
+
+@app.get("/index.html", include_in_schema=False)
+async def serve_index_html():
+    site_index = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "site", "index.html")
+    if os.path.exists(site_index):
+        return FileResponse(site_index, media_type="text/html")
+    raise HTTPException(status_code=404, detail="Page not found")
 
 @app.get("/health", tags=["General"])
 async def health():
