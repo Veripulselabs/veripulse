@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — VeriPulse Labs</title>
+    <meta name="description" content="Privacy Policy and Zero-Retention Data Standards for VeriPulse Labs.">
+    <link rel="icon" type="image/svg+xml" href="assets/veripulse_logo.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --apple-bg: #000000;
+            --apple-surface: #161617;
+            --apple-card: #1c1c1e;
+            --apple-text: #f5f5f7;
+            --apple-subtext: #86868b;
+            --apple-blue: #0071e3;
+            --apple-border: rgba(255, 255, 255, 0.08);
+        }
+        body {
+            background-color: var(--apple-bg);
+            color: var(--apple-text);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            letter-spacing: -0.018em;
+        }
+        .apple-nav-blur {
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .apple-card {
+            background-color: var(--apple-surface);
+            border: 1px solid var(--apple-border);
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="selection:bg-[#0071e3]/30 selection:text-white">
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-50 apple-nav-blur border-b border-white/[0.08] h-12 flex items-center px-4 sm:px-8">
+        <div class="max-w-4xl mx-auto w-full flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2 text-white hover:opacity-80 transition-opacity">
+                <i class="fa-solid fa-shield-halved text-sm text-[#0071e3]"></i>
+                <span class="font-semibold tracking-tight text-sm">VeriPulse Labs</span>
+            </a>
+            <a href="index.html" class="text-xs text-[#86868b] hover:text-[#f5f5f7] transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-arrow-left text-[10px]"></i> Back to Platform
+            </a>
+        </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+        <div class="mb-12 border-b border-white/[0.08] pb-8">
+            <p class="text-xs font-semibold tracking-wider uppercase text-[#0071e3] mb-2">Privacy & Compliance</p>
+            <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-[#f5f5f7] mb-3">Privacy Policy</h1>
+            <p class="text-sm text-[#86868b]">Last Updated: September 5, 2026 | Effective Date: September 5, 2026</p>
+        </div>
+
+        <div class="space-y-10 text-sm leading-relaxed text-[#86868b]">
+            
+            <section class="space-y-3">
+                <h2 class="text-lg font-semibold text-[#f5f5f7]">1. Zero-Retention Core Principle</h2>
+                <p>VeriPulse Labs was built on a foundational principle: <strong>we verify data without storing it</strong>. When your applications submit queries (such as an email address or a telephone number) to our API endpoints, the query payload is processed exclusively in volatile random-access memory (RAM) to compute syntax, DNS MX records, carrier classification, and heuristic risk scores. Upon transmitting the JSON response back to your client, the query payload is immediately cleared from volatile memory. We do not write query payloads to persistent disks, databases, or third-party ad networks.</p>
+            </section>
+
+            <section class="space-y-3">
+                <h2 class="text-lg font-semibold text-[#f5f5f7]">2. Information We Process</h2>
+                <div class="space-y-2">
+                    <p><strong class="text-white">A. Verification Data (Ephemeral):</strong> Email addresses and phone numbers provided via REST API endpoints are processed in real-time and immediately purged.</p>
+                    <p><strong class="text-white">B. Operational Metadata (Aggregated):</strong> We record coarse telemetry to maintain infrastructure health, monitor latency, and prevent abuse (such as total daily request volumes, HTTP response status codes, and anonymized rate-limit counters).</p>
+                    <p><strong class="text-white">C. Direct Communications:</strong> If you contact us via support@veripulselabs.com, we retain your email correspondence solely to assist you with customer service or technical troubleshooting.</p>
+                </div>
+            </section>
+
+            <section class="space-y-3">
+                <h2 class="text-lg font-semibold text-[#f5f5f7]">3. Data Protection Roles (GDPR & CCPA/CPRA)</h2>
+                <p>Under the EU General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA/CPRA):</p>
+                <ul class="list-disc pl-5 space-y-1.5">
+                    <li><strong>VeriPulse as Data Processor:</strong> When you submit end-user identifiers to our API, you are the Data Controller and VeriPulse Labs acts as a Data Processor.</li>
+                    <li><strong>Zero Sale of Personal Information:</strong> VeriPulse Labs does not sell, rent, monetize, or trade any personal data submitted through our APIs or website.</li>
+                    <li><strong>Cross-Border Transfers:</strong> Data is transmitted using TLS 1.3 encryption across globally distributed edge nodes (Cloudflare) to ensure sub-40ms execution without permanent overseas storage.</li>
+                </ul>
+            </section>
+
+            <section class="space-y-3">
+                <h2 class="text-lg font-semibold text-[#f5f5f7]">4. Third-Party Marketplace Services</h2>
+                <p>If you consume VeriPulse APIs via RapidAPI or other developer marketplaces, your account credentials, credit card details, and billing records are managed directly by that marketplace under their respective privacy policies. VeriPulse Labs does not receive or store your raw payment details.</p>
+            </section>
+
+            <section class="space-y-3">
+                <h2 class="text-lg font-semibold text-[#f5f5f7]">5. Security Standards</h2>
+                <p>All network traffic to and from VeriPulse Labs is strictly enforced over HTTPS utilizing TLS 1.3 cryptographic protocols. Our edge routing is protected against distributed denial-of-service (DDoS) attacks and malicious scraping through Cloudflare edge protection.</p>
+            </section>
+
+            <section class="space-y-3 border-t border-white/[0.08] pt-8">
+                <h2 class="text-base font-semibold text-[#f5f5f7]">Contact the Privacy Officer</h2>
+                <p>If you have any questions or data privacy inquiries regarding our zero-retention architecture, reach out directly to: <a href="mailto:support@veripulselabs.com" class="text-[#0071e3] hover:underline">support@veripulselabs.com</a>.</p>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-white/[0.08] text-xs text-[#86868b] px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-2 text-white">
+                <i class="fa-solid fa-shield-halved text-xs text-[#0071e3]"></i>
+                <span>VeriPulse Labs</span>
+            </div>
+            <div class="flex gap-6">
+                <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+                <a href="privacy.html" class="text-white font-medium">Privacy Policy</a>
+                <a href="index.html" class="hover:text-white transition-colors">Platform</a>
+            </div>
+            <span>Copyright © 2026 VeriPulse Labs. All rights reserved.</span>
+        </div>
+    </footer>
+
+</body>
+</html>

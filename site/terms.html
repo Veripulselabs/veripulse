@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Terms of Service — VeriPulse Labs</title>
+    <meta name="description" content="Developer Terms of Service, API License, Warranty Disclaimers, and Limitation of Liability for VeriPulse Labs.">
+    <link rel="icon" type="image/svg+xml" href="assets/veripulse_logo.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --apple-bg: #000000;
+            --apple-surface: #161617;
+            --apple-card: #1c1c1e;
+            --apple-text: #f5f5f7;
+            --apple-subtext: #86868b;
+            --apple-blue: #0071e3;
+            --apple-border: rgba(255, 255, 255, 0.08);
+        }
+        body {
+            background-color: var(--apple-bg);
+            color: var(--apple-text);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            letter-spacing: -0.018em;
+        }
+        .apple-nav-blur {
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .apple-card {
+            background-color: var(--apple-surface);
+            border: 1px solid var(--apple-border);
+            border-radius: 20px;
+        }
+        .legal-clause {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--apple-blue);
+            padding: 16px 20px;
+            border-radius: 0 12px 12px 0;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body class="selection:bg-[#0071e3]/30 selection:text-white">
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-50 apple-nav-blur border-b border-white/[0.08] h-12 flex items-center px-4 sm:px-8">
+        <div class="max-w-4xl mx-auto w-full flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2 text-white hover:opacity-80 transition-opacity">
+                <i class="fa-solid fa-shield-halved text-sm text-[#0071e3]"></i>
+                <span class="font-semibold tracking-tight text-sm">VeriPulse Labs</span>
+            </a>
+            <a href="index.html" class="text-xs text-[#86868b] hover:text-[#f5f5f7] transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-arrow-left text-[10px]"></i> Back to Platform
+            </a>
+        </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+        <div class="mb-12 border-b border-white/[0.08] pb-8">
+            <p class="text-xs font-semibold tracking-wider uppercase text-[#0071e3] mb-2">Legal & Governance</p>
+            <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-[#f5f5f7] mb-3">Developer Terms of Service</h1>
+            <p class="text-sm text-[#86868b]">Last Updated: September 5, 2026 | Effective Date: September 5, 2026</p>
+        </div>
+
+        <div class="space-y-12 text-sm leading-relaxed text-[#86868b]">
+            
+            <!-- Notice -->
+            <div class="apple-card p-6 text-xs text-[#f5f5f7] bg-[#1a1a1d] border-white/20">
+                <p class="font-semibold text-white mb-2">IMPORTANT NOTICE TO ALL DEVELOPERS & INTEGRATORS:</p>
+                <p class="text-[#86868b]">PLEASE READ THESE DEVELOPER TERMS OF SERVICE CAREFULLY. BY ACCESSING, INTEGRATING, CONSUMING, OR CALLING ANY VERIPULSE LABS APIS, WEBSITES (VERIPULSELABS.COM), DOCUMENTATION, OR ENDPOINTS (COLLECTIVELY, THE "SERVICES"), YOU AGREE TO BE BOUND BY ALL PROVISIONS HEREIN, INCLUDING THE MANDATORY DISCLAIMER OF HEURISTIC WARRANTIES (SECTION 2) AND THE STRICT AGGREGATE LIMITATION OF MONETARY LIABILITY (SECTION 3). IF YOU DO NOT AGREE, YOU MUST IMMEDIATELY CEASE ALL INTEGRATION AND USE.</p>
+            </div>
+
+            <!-- Section 1 -->
+            <section class="space-y-3">
+                <h2 class="text-lg font-semibold text-[#f5f5f7]">1. The Services & Permitted Evaluation</h2>
+                <p>VeriPulse Labs provides programmatic developer utilities, including syntax parsing, DNS MX reachability checks, disposable/burner domain filtering, telecom carrier lookups, and composite fraud-risk scoring heuristics (collectively, "VeriPulse APIs"). Subject to compliance with these Terms, VeriPulse Labs grants you a limited, revocable, non-exclusive, non-transferable license to access the Services for evaluation and software application integration.</p>
+            </section>
+
+            <!-- Section 2: DISCLAIMER OF WARRANTIES -->
+            <section class="space-y-4">
+                <h2 class="text-lg font-semibold text-[#f5f5f7]">2. Disclaimer of Warranties & Nature of Heuristic Scoring</h2>
+                <div class="legal-clause text-[#f5f5f7]">
+                    <strong>2.1 "AS IS" AND "AS AVAILABLE"</strong><br>
+                    TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE VERIPULSE LABS SERVICES, APIS, ENDPOINTS, DOCUMENTATION, AND ALL OUTPUT PAYLOADS ARE PROVIDED STRICTLY ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITH ALL FAULTS AND DEFECTS, WITHOUT WARRANTY OF ANY KIND, EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING WITHOUT LIMITATION WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT, AND ACCURACY.
+                    <br><br>
+                    <strong>2.2 FRAUD AND VERIFICATION HEURISTICS DISCLAIMER</strong><br>
+                    CUSTOMER EXPRESSLY ACKNOWLEDGES AND AGREES THAT:<br>
+                    (A) THE SERVICES UTILIZE PROBABILISTIC ALGORITHMS, HEURISTIC SCORING, VOLATILE CACHING, AND THIRD-PARTY TELECOMMUNICATIONS AND DOMAIN REGISTRY DATA;<br>
+                    (B) RISK SCORES, LINE-TYPE CLASSIFICATIONS, DISPOSABLE DOMAIN FLAGS, AND VERIFICATION VERDICTS DO NOT CONSTITUTE A DEFINITIVE LEGAL, REGULATORY, FINANCIAL, OR FACTUAL DETERMINATION;<br>
+                    (C) VERIPULSE LABS DOES NOT WARRANT OR GUARANTEE THAT THE SERVICES WILL DETECT ALL INSTANCES OF FRAUD, VOIP NUMBERS, BOT SIGNUPS, OR DISPOSABLE DOMAINS, NOR DOES IT GUARANTEE THAT LEGITIMATE USERS WILL NEVER BE CATEGORIZED WITH HIGH RISK (FALSE POSITIVES);<br>
+                    (D) CUSTOMER REMAINS SOLELY RESPONSIBLE FOR IMPLEMENTING HUMAN-IN-THE-LOOP SAFEGUARDS, FALLBACK LOGIC, AND INDEPENDENT RE-VERIFICATION RULES IN ITS APPLICATION FLOWS.
+                </div>
+            </section>
+
+            <!-- Section 3: LIMITATION OF LIABILITY -->
+            <section class="space-y-4">
+                <h2 class="text-lg font-semibold text-[#f5f5f7]">3. Limitation of Liability & Consequential Damages Waiver</h2>
+                <div class="legal-clause text-[#f5f5f7]">
+                    <strong>3.1 EXCLUSION OF CONSEQUENTIAL AND INDIRECT DAMAGES</strong><br>
+                    TO THE FULLEST EXTENT PERMITTED UNDER APPLICABLE LAW, IN NO EVENT SHALL VERIPULSE LABS, ITS FOUNDERS, OFFICERS, EMPLOYEES, AFFILIATES, OR SERVICE PROVIDERS BE LIABLE TO YOU OR ANY THIRD PARTY UNDER ANY CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY, OR OTHER THEORY FOR:<br>
+                    (A) ANY INDIRECT, INCIDENTAL, SPECIAL, PUNITIVE, COVER, OR CONSEQUENTIAL DAMAGES;<br>
+                    (B) LOSS OF PROFITS, REVENUE, SALES, BUSINESS REPUTATION, GOODWILL, OR ANTICIPATED SAVINGS;<br>
+                    (C) BUSINESS INTERRUPTION, SERVICE DISRUPTIONS, LATENCY SPIKES, OR PRODUCTION STOPPAGES;<br>
+                    (D) LOSS, ALTERATION, OR THEFT OF CUSTOMER DATA, REPUTATIONAL INJURY, OR USER ONBOARDING DISRUPTIONS RESULTING FROM FALSE POSITIVES OR FALSE NEGATIVES,<br>
+                    EVEN IF VERIPULSE LABS HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES, AND REGARDLESS OF WHETHER SUCH DAMAGES WERE FORESEEABLE.
+                    <br><br>
+                    <strong>3.2 STRICT MONETARY LIABILITY CAP</strong><br>
+                    NOTWITHSTANDING ANYTHING TO THE CONTRARY IN THESE TERMS, THE MAXIMUM AGGREGATE MONETARY LIABILITY OF VERIPULSE LABS AND ITS FOUNDERS ARISING OUT OF OR RELATING TO THE SERVICES SHALL BE STRICTLY LIMITED TO THE LESSER OF: (I) THE TOTAL FEES ACTUALLY PAID BY YOU TO VERIPULSE LABS IN THE THIRTY (30) DAYS IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO LIABILITY, OR (II) FIFTY DOLLARS ($50.00 USD). FOR USERS ON FREE TIERS, SANDBOX DEMOS, OR EVALUATION CREDITS, TOTAL AGGREGATE MONETARY LIABILITY IS STRICTLY ZERO DOLLARS ($0.00 USD).
+                    <br><br>
+                    <strong>3.3 ESSENTIAL PURPOSE & RISK ALLOCATION</strong><br>
+                    CUSTOMER ACKNOWLEDGES AND AGREES THAT THE ESSENTIAL ALLOCATION OF RISK EMBODIED IN THIS SECTION 3 FORMS A FUNDAMENTAL BASIS OF THE BARGAIN AND THAT VERIPULSE LABS WOULD NOT PROVIDE THE SERVICES WITHOUT THESE LIMITATIONS.
+                </div>
+            </section>
+
+            <!-- Section 4 -->
+            <section class="space-y-3">
+                <h2 class="text-lg font-semibold text-[#f5f5f7]">4. Acceptable Use & Developer Conduct</h2>
+                <p>You agree not to violate any applicable laws or platform rules in connection with your use of the Services. Specifically, you shall not:</p>
+                <ul class="list-disc pl-5 space-y-1.5">
+                    <li>Reverse-engineer, decompile, disassemble, or derive the underlying algorithms or domain catalogs of the Services.</li>
+                    <li>Resell, sublicense, redistribute, or syndicate API responses to third parties without prior written authorization.</li>
+                    <li>Utilize the Services, outputs, or heuristics to train, fine-tune, or benchmark competing machine learning models or fraud-detection engines.</li>
+                    <li>Bypass rate limits, launch denial-of-service attempts, or generate unauthorized concurrent request spikes designed to degrade infrastructure.</li>
+                </ul>
+                <p>VeriPulse Labs reserves the absolute right to throttle, suspend, or revoke access or API keys immediately without notice or liability upon detecting unauthorized patterns or infrastructure abuse.</p>
+            </section>
+
+            <!-- Section 5 -->
+            <section class="space-y-3">
+                <h2 class="text-lg font-semibold text-[#f5f5f7]">5. Ephemeral Data Processing</h2>
+                <p>VeriPulse operates an in-memory, zero-retention verification engine. Payloads submitted for verification (email addresses, phone numbers) are processed ephemerally in volatile memory for the duration of the request execution and are not retained in persistent databases. Customer is solely responsible for obtaining any necessary consents from its end-users prior to transmitting data to our endpoints.</p>
+            </section>
+
+            <!-- Section 6 -->
+            <section class="space-y-3">
+                <h2 class="text-lg font-semibold text-[#f5f5f7]">6. Governing Law & Exclusive Jurisdiction</h2>
+                <p>These Terms, and any dispute arising out of or related to these Terms or the Services, shall be governed by and construed in accordance with the laws of the <strong>District of Columbia, United States</strong>, without giving effect to any conflict of law principles. You expressly agree that exclusive jurisdiction and venue for any legal proceeding shall reside in the local or federal courts located in Washington, District of Columbia.</p>
+            </section>
+
+            <!-- Section 7 -->
+            <section class="space-y-3">
+                <h2 class="text-lg font-semibold text-[#f5f5f7]">7. Modifications to Terms</h2>
+                <p>VeriPulse Labs may update these Terms from time to time. Continued access or use of the Services after revisions become effective constitutes your binding acceptance of the revised Terms.</p>
+            </section>
+
+            <!-- Section 8 -->
+            <section class="space-y-3 border-t border-white/[0.08] pt-8">
+                <h2 class="text-base font-semibold text-[#f5f5f7]">Contact & Legal Inquiries</h2>
+                <p>For questions concerning these Developer Terms of Service, please contact: <a href="mailto:support@veripulselabs.com" class="text-[#0071e3] hover:underline">support@veripulselabs.com</a>.</p>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-white/[0.08] text-xs text-[#86868b] px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-2 text-white">
+                <i class="fa-solid fa-shield-halved text-xs text-[#0071e3]"></i>
+                <span>VeriPulse Labs</span>
+            </div>
+            <div class="flex gap-6">
+                <a href="terms.html" class="text-white font-medium">Terms of Service</a>
+                <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="index.html" class="hover:text-white transition-colors">Platform</a>
+            </div>
+            <span>Copyright © 2026 VeriPulse Labs. All rights reserved.</span>
+        </div>
+    </footer>
+
+</body>
+</html>

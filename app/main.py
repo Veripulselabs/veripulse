@@ -20,10 +20,28 @@ from core.dns_resolver import check_mx
 from core.risk_engine import RiskEngine
 from core.phone_checker import PhoneChecker
 
+LEGAL_DESCRIPTION = f"""{settings.DESCRIPTION}
+
+### ⚖️ Legal Notice & Warranty Disclaimer
+The VeriPulse API utilizes probabilistic algorithms, heuristic analysis, and volatile caching. 
+All risk scores, verification flags, and line-type classifications are provided strictly **"AS IS"** and **"AS AVAILABLE"** without warranties of any kind. 
+Use of this API constitutes binding acceptance of the [VeriPulse Developer Terms of Service](https://veripulselabs.com/terms.html), including full limitation of monetary liability (capped at fees paid in preceding 30 days or $50.00 USD) and complete waiver of consequential damages.
+"""
+
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
-    description=settings.DESCRIPTION,
+    description=LEGAL_DESCRIPTION,
+    terms_of_service="https://veripulselabs.com/terms.html",
+    contact={
+        "name": "VeriPulse Labs Developer & Legal Operations",
+        "url": "https://veripulselabs.com",
+        "email": "support@veripulselabs.com"
+    },
+    license_info={
+        "name": "VeriPulse Developer Terms (AS IS / Limited Liability)",
+        "url": "https://veripulselabs.com/terms.html"
+    },
     docs_url="/docs",
     redoc_url="/redoc"
 )
