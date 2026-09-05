@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>VeriPulse — Trust Intelligence API</title>
     <meta name="description" content="Sub-40ms email validation and fraud prevention. Designed for speed, precision, and zero friction.">
     
     <!-- OpenGraph Metadata -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="VeriPulse — Trust Intelligence API">
-    <meta property="og:description" content="Sub-40ms email validation and fraud scoring. Designed with precision.">
+    <meta property="og:description" content="Sub-40ms email validation and fraud scoring. Designed with Apple-level precision.">
     <meta property="og:image" content="assets/veripulse_logo.png">
 
     <!-- Favicon -->
@@ -23,10 +26,10 @@
         :root {
             --apple-bg: #000000;
             --apple-surface: #161617;
-            --apple-card: #1d1d1f;
+            --apple-card: #1c1c1e;
             --apple-text: #f5f5f7;
             --apple-subtext: #86868b;
-            --apple-blue: #2997ff;
+            --apple-blue: #0071e3;
             --apple-blue-hover: #0077ed;
             --apple-border: rgba(255, 255, 255, 0.08);
             --apple-border-hover: rgba(255, 255, 255, 0.18);
@@ -38,7 +41,7 @@
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            letter-spacing: -0.015em;
+            letter-spacing: -0.018em;
         }
 
         .apple-nav-blur {
@@ -50,7 +53,8 @@
         .apple-card {
             background-color: var(--apple-surface);
             border: 1px solid var(--apple-border);
-            transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 28px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .apple-card:hover {
@@ -61,10 +65,10 @@
             background-color: #0071e3;
             color: #ffffff;
             border-radius: 980px;
-            padding: 10px 22px;
+            padding: 12px 26px;
             font-size: 14px;
             font-weight: 500;
-            transition: all 0.2s ease;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -84,11 +88,11 @@
             background-color: rgba(255, 255, 255, 0.08);
             color: #f5f5f7;
             border-radius: 980px;
-            padding: 10px 22px;
+            padding: 12px 26px;
             font-size: 14px;
             font-weight: 500;
             border: 1px solid rgba(255, 255, 255, 0.12);
-            transition: all 0.2s ease;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -101,19 +105,8 @@
             transform: scale(1.02);
         }
 
-        .apple-link {
-            color: var(--apple-blue);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 14px;
-            transition: opacity 0.2s ease;
-        }
-
-        .apple-link:hover {
-            opacity: 0.85;
-            text-decoration: underline;
+        .apple-pill-secondary:active {
+            transform: scale(0.98);
         }
 
         .apple-segmented-control {
@@ -125,7 +118,7 @@
 
         .apple-segmented-btn {
             border-radius: 980px;
-            padding: 6px 16px;
+            padding: 6px 18px;
             font-size: 12px;
             font-weight: 500;
             color: var(--apple-subtext);
@@ -141,21 +134,21 @@
 </head>
 <body class="selection:bg-[#0071e3]/30 selection:text-white">
 
-    <!-- ==================== APPLE-STYLE MINIMAL NAVBAR ==================== -->
+    <!-- ==================== APPLE MINIMAL NAVBAR (44px) ==================== -->
     <header class="sticky top-0 z-50 apple-nav-blur border-b border-white/[0.08] h-12 flex items-center px-4 sm:px-8">
         <div class="max-w-5xl mx-auto w-full flex items-center justify-between">
             <!-- Brand Logo -->
             <a href="#" class="flex items-center space-x-2 text-white hover:opacity-80 transition-opacity">
-                <i class="fa-solid fa-shield-halved text-sm text-[#2997ff]"></i>
+                <i class="fa-solid fa-shield-halved text-sm text-[#0071e3]"></i>
                 <span class="font-semibold tracking-tight text-sm">VeriPulse</span>
             </a>
 
-            <!-- Minimalist Navigation Links -->
-            <nav class="hidden md:flex items-center space-x-8 text-xs font-normal text-[#86868b]">
+            <!-- Editorial Nav Links -->
+            <nav class="hidden md:flex items-center space-x-9 text-xs font-normal text-[#86868b]">
                 <a href="#overview" class="hover:text-[#f5f5f7] transition-colors">Overview</a>
                 <a href="#sandbox" class="hover:text-[#f5f5f7] transition-colors">Demo</a>
-                <a href="#architecture" class="hover:text-[#f5f5f7] transition-colors">Features</a>
-                <a href="#developers" class="hover:text-[#f5f5f7] transition-colors">Quickstart</a>
+                <a href="#highlights" class="hover:text-[#f5f5f7] transition-colors">Highlights</a>
+                <a href="#developers" class="hover:text-[#f5f5f7] transition-colors">Developers</a>
                 <a href="#pricing" class="hover:text-[#f5f5f7] transition-colors">Pricing</a>
                 <a href="https://github.com/jasdebarreau3-cell/veripulse" target="_blank" rel="noopener noreferrer" class="hover:text-[#f5f5f7] transition-colors">GitHub</a>
             </nav>
@@ -163,93 +156,93 @@
             <!-- Pill CTA -->
             <div>
                 <a href="https://rapidapi.com/jasdebarreau3/api/veripulse-email-verification-and-fraud-detection" target="_blank" rel="noopener noreferrer" 
-                   class="apple-pill-btn text-xs !py-1.5 !px-3.5">
+                   class="apple-pill-btn text-xs !py-1.5 !px-4">
                     <span>Get API Key</span>
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- ==================== HERO SECTION (APPLE STYLE) ==================== -->
-    <section id="overview" class="pt-24 pb-20 sm:pt-32 sm:pb-28 text-center px-4 sm:px-6 max-w-4xl mx-auto">
-        <!-- Eyebrow Tagline -->
-        <p class="text-xs font-semibold tracking-wider uppercase text-[#2997ff] mb-4">
+    <!-- ==================== HERO SECTION ==================== -->
+    <section id="overview" class="pt-24 pb-20 sm:pt-36 sm:pb-32 text-center px-4 sm:px-6 max-w-4xl mx-auto">
+        <!-- Eyebrow -->
+        <p class="text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#0071e3] mb-4">
             Trust Intelligence
         </p>
 
         <!-- Main Headline -->
-        <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#f5f5f7] leading-[1.08] mb-6">
+        <h1 class="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight text-[#f5f5f7] leading-[1.04] mb-6">
             Instant verification.<br>
-            <span class="text-[#86868b]">Zero fraud friction.</span>
+            <span class="text-[#86868b]">Sub-40ms speed.</span>
         </h1>
 
-        <!-- Subtitle -->
-        <p class="max-w-xl mx-auto text-base sm:text-lg text-[#86868b] leading-relaxed mb-10 font-normal">
-            Validate deliverability, eliminate 50,000+ disposable burner domains, and score account risk in under 40 milliseconds.
+        <!-- Subhead -->
+        <p class="max-w-xl mx-auto text-lg sm:text-xl text-[#86868b] leading-relaxed mb-10 font-normal">
+            Validate deliverability, eliminate 50,000+ disposable burner domains, and score fraud risk in under 40 milliseconds.
         </p>
 
-        <!-- Action Pills -->
-        <div class="flex flex-wrap items-center justify-center gap-4 mb-16">
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-4 mb-20">
             <a href="https://rapidapi.com/jasdebarreau3/api/veripulse-email-verification-and-fraud-detection" target="_blank" rel="noopener noreferrer"
-               class="apple-pill-btn">
-                <span>Start Free on RapidAPI</span>
+               class="apple-pill-btn text-sm">
+                <span>Start free on RapidAPI</span>
                 <i class="fa-solid fa-chevron-right text-[10px]"></i>
             </a>
-            <a href="#sandbox" class="apple-pill-secondary">
-                <span>Try the Live Demo</span>
+            <a href="#sandbox" class="apple-pill-secondary text-sm">
+                <span>Try the live demo</span>
             </a>
         </div>
 
-        <!-- Key Metrics Row (Minimalist Editorial Style) -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-10 border-t border-white/[0.08] text-center max-w-3xl mx-auto">
+        <!-- Metrics Strip (Minimalist Apple Style) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 pt-12 border-t border-white/[0.08] text-center max-w-3xl mx-auto">
             <div>
-                <div class="text-3xl sm:text-4xl font-semibold text-[#f5f5f7] tracking-tight">40ms</div>
-                <div class="text-xs text-[#86868b] mt-1 font-normal">Latency SLA</div>
+                <div class="text-3xl sm:text-5xl font-semibold text-[#f5f5f7] tracking-tight">40ms</div>
+                <div class="text-xs text-[#86868b] mt-1.5 font-normal">Latency SLA</div>
             </div>
             <div>
-                <div class="text-3xl sm:text-4xl font-semibold text-[#f5f5f7] tracking-tight">50K+</div>
-                <div class="text-xs text-[#86868b] mt-1 font-normal">Burner Domains</div>
+                <div class="text-3xl sm:text-5xl font-semibold text-[#f5f5f7] tracking-tight">50K+</div>
+                <div class="text-xs text-[#86868b] mt-1.5 font-normal">Burner Domains</div>
             </div>
             <div>
-                <div class="text-3xl sm:text-4xl font-semibold text-[#f5f5f7] tracking-tight">RFC 5322</div>
-                <div class="text-xs text-[#86868b] mt-1 font-normal">Syntax Precision</div>
+                <div class="text-3xl sm:text-5xl font-semibold text-[#f5f5f7] tracking-tight">RFC 5322</div>
+                <div class="text-xs text-[#86868b] mt-1.5 font-normal">Syntax Engine</div>
             </div>
             <div>
-                <div class="text-3xl sm:text-4xl font-semibold text-[#f5f5f7] tracking-tight">99.9%</div>
-                <div class="text-xs text-[#86868b] mt-1 font-normal">Cloud Uptime</div>
+                <div class="text-3xl sm:text-5xl font-semibold text-[#f5f5f7] tracking-tight">99.9%</div>
+                <div class="text-xs text-[#86868b] mt-1.5 font-normal">Cloud Uptime</div>
             </div>
         </div>
     </section>
 
-    <!-- ==================== LIVE INTERACTIVE SANDBOX (APPLE STYLE) ==================== -->
-    <section id="sandbox" class="py-20 px-4 sm:px-6 bg-[#0a0a0c] border-y border-white/[0.06]">
-        <div class="max-w-3xl mx-auto">
+    <!-- ==================== LIVE DEMO SANDBOX ==================== -->
+    <section id="sandbox" class="py-24 px-4 sm:px-6 bg-[#0a0a0c] border-y border-white/[0.06]">
+        <div class="max-w-2xl mx-auto">
             <div class="text-center mb-10">
-                <h2 class="text-xs font-semibold tracking-wider uppercase text-[#86868b] mb-2">Live Demo</h2>
-                <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#f5f5f7]">Test the engine in real time.</h3>
-                <p class="text-sm text-[#86868b] mt-2">Connected directly to our cloud cluster. Test any address below.</p>
+                <h2 class="text-xs font-semibold tracking-wider uppercase text-[#86868b] mb-2">Live Demonstration</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#f5f5f7]">See it in action.</h3>
+                <p class="text-sm text-[#86868b] mt-2">Connected live to our Virginia cloud cluster. No API key required for testing.</p>
             </div>
 
-            <!-- Apple-Style Showcase Card -->
-            <div class="apple-card rounded-3xl p-6 sm:p-8 relative overflow-hidden">
-                <!-- Live Network Status Header -->
+            <!-- Apple Intelligence Style Showcase Card -->
+            <div class="apple-card p-6 sm:p-8">
+                <!-- Status Top -->
                 <div class="flex items-center justify-between pb-6 border-b border-white/[0.08] text-xs">
                     <div class="flex items-center space-x-2">
                         <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
                         <span class="text-[#f5f5f7] font-medium">Cloud Engine Active</span>
                     </div>
-                    <div id="demoBenchmarkBadge" class="hidden text-xs font-mono text-[#2997ff] flex items-center gap-1.5">
+                    <div id="demoBenchmarkBadge" class="hidden text-xs font-mono text-[#0071e3] flex items-center gap-1.5 font-medium">
                         <i class="fa-solid fa-bolt text-[11px]"></i>
                         <span id="demoBenchmarkVal">38ms</span>
                     </div>
                 </div>
 
-                <!-- Sleek Centered Input Field -->
+                <!-- Input Row -->
                 <form id="appleDemoForm" onsubmit="runAppleDemo(event)" class="mt-6">
                     <div class="relative flex items-center">
                         <input type="text" id="appleDemoInput" value="ceo@veripulselabs.com" 
                                placeholder="Enter email address (e.g. user@gmail.com)"
-                               class="w-full bg-[#0a0a0c] border border-white/[0.12] rounded-2xl py-3.5 pl-4 pr-32 text-sm text-[#f5f5f7] placeholder-[#86868b] focus:outline-none focus:border-[#2997ff] transition-all font-mono">
+                               class="w-full bg-[#000000] border border-white/[0.12] rounded-2xl py-3.5 pl-4 pr-28 text-sm text-[#f5f5f7] placeholder-[#86868b] focus:outline-none focus:border-[#0071e3] transition-all font-mono">
                         <button type="submit" id="appleDemoBtn"
                                 class="absolute right-2 px-4 py-2 rounded-xl bg-white text-black hover:bg-slate-200 font-medium text-xs transition-transform active:scale-95">
                             Verify
@@ -257,11 +250,11 @@
                     </div>
                 </form>
 
-                <!-- Quick Presets Pills -->
+                <!-- Preset Pills -->
                 <div class="flex flex-wrap items-center gap-2 mt-4 text-xs">
-                    <span class="text-[#86868b]">Presets:</span>
+                    <span class="text-[#86868b]">Sample tests:</span>
                     <button type="button" onclick="setApplePreset('user@gmail.com')" class="px-3 py-1 rounded-full bg-white/[0.05] hover:bg-white/[0.1] text-[#f5f5f7] transition-colors">
-                        Consumer
+                        Consumer Free
                     </button>
                     <button type="button" onclick="setApplePreset('bot@mailinator.com')" class="px-3 py-1 rounded-full bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/20 transition-colors">
                         Disposable Burner
@@ -271,130 +264,129 @@
                     </button>
                 </div>
 
-                <!-- Clean Editorial Result Display -->
+                <!-- Result Card -->
                 <div id="appleResultBox" class="mt-8 pt-6 border-t border-white/[0.08] space-y-6">
-                    <!-- Top Status Row -->
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <!-- Top Row -->
+                    <div class="flex items-center justify-between">
                         <div>
-                            <div class="text-xs text-[#86868b] uppercase tracking-wider font-semibold">Decision</div>
-                            <div class="mt-1 flex items-center gap-3">
-                                <span id="appleBadgeAction" class="text-sm font-semibold px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                            <div class="text-xs text-[#86868b] uppercase tracking-wider font-semibold">Recommendation</div>
+                            <div class="mt-1.5 flex items-center gap-3">
+                                <span id="appleBadgeAction" class="text-sm font-semibold px-3.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
                                     ALLOW
                                 </span>
                                 <span id="appleResultSubtext" class="text-xs text-[#86868b]">Deliverable mailbox verified</span>
                             </div>
                         </div>
 
-                        <div class="sm:text-right">
-                            <div class="text-xs text-[#86868b] uppercase tracking-wider font-semibold">Fraud Risk</div>
-                            <div class="mt-1 text-2xl font-bold tracking-tight text-[#f5f5f7]">
+                        <div class="text-right">
+                            <div class="text-xs text-[#86868b] uppercase tracking-wider font-semibold">Risk Score</div>
+                            <div class="mt-1 text-3xl font-bold tracking-tight text-[#f5f5f7]">
                                 <span id="appleScoreNum">0</span><span class="text-xs text-[#86868b] font-normal"> / 100</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Clean Checklist -->
+                    <!-- Checklist -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
+                        <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
                             <span class="text-[#86868b]">RFC 5322 Syntax</span>
                             <span id="appleCheckSyntax" class="font-medium text-emerald-400">Valid</span>
                         </div>
-                        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
+                        <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
                             <span class="text-[#86868b]">Disposable Domain</span>
                             <span id="appleCheckDisposable" class="font-medium text-emerald-400">Clean</span>
                         </div>
-                        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
+                        <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
                             <span class="text-[#86868b]">DNS Mail Exchange</span>
                             <span id="appleCheckMx" class="font-medium text-emerald-400">Resolved</span>
                         </div>
-                        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
+                        <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
                             <span class="text-[#86868b]">Mailbox Provider</span>
-                            <span id="appleCheckProvider" class="font-medium text-[#2997ff]">Corporate Domain</span>
+                            <span id="appleCheckProvider" class="font-medium text-[#0071e3]">Corporate Domain</span>
                         </div>
                     </div>
 
-                    <!-- Typo Suggestion Notification (if present) -->
-                    <div id="appleTypoNotice" class="hidden p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-300 flex items-center justify-between">
+                    <!-- Typo Notice -->
+                    <div id="appleTypoNotice" class="hidden p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-300 flex items-center justify-between">
                         <span>Typo detected. Did you mean: <strong id="appleTypoTarget" class="underline font-mono">user@gmail.com</strong>?</span>
-                        <button type="button" onclick="applyAppleTypo()" class="px-2.5 py-1 rounded-full bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 font-medium text-[11px]">Apply</button>
+                        <button type="button" onclick="applyAppleTypo()" class="px-3 py-1 rounded-full bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 font-medium text-[11px]">Apply</button>
                     </div>
 
-                    <!-- Clean Collapsible Schema -->
+                    <!-- Raw JSON Details -->
                     <details class="text-xs text-[#86868b] border border-white/[0.06] rounded-2xl p-3 bg-black/40">
                         <summary class="cursor-pointer select-none hover:text-[#f5f5f7] transition-colors font-mono">
-                            View Raw JSON Response
+                            View JSON response
                         </summary>
-                        <pre id="appleRawJson" class="mt-3 p-3 rounded-xl bg-[#0a0a0c] text-xs font-mono text-[#2997ff] overflow-x-auto leading-relaxed"></pre>
+                        <pre id="appleRawJson" class="mt-3 p-3 rounded-xl bg-[#000000] text-xs font-mono text-[#0071e3] overflow-x-auto leading-relaxed"></pre>
                     </details>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ==================== BENTO FEATURES (APPLE STYLE) ==================== -->
-    <section id="architecture" class="py-24 max-w-5xl mx-auto px-4 sm:px-6">
-        <div class="text-center mb-16">
-            <h2 class="text-xs font-semibold tracking-wider uppercase text-[#86868b] mb-2">Engine Architecture</h2>
-            <h3 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#f5f5f7]">Precision down to the millisecond.</h3>
+    <!-- ==================== HIGHLIGHTS / BENTO ==================== -->
+    <section id="highlights" class="py-28 max-w-5xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-20">
+            <h2 class="text-xs font-semibold tracking-wider uppercase text-[#86868b] mb-3">Highlights</h2>
+            <h3 class="text-4xl sm:text-5xl font-bold tracking-tight text-[#f5f5f7]">Engineered without compromise.</h3>
         </div>
 
-        <!-- 2x2 Bento Box Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Bento 1 -->
-            <div class="apple-card rounded-3xl p-8 flex flex-col justify-between">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Card 1 -->
+            <div class="apple-card p-10 flex flex-col justify-between">
                 <div>
-                    <span class="text-xs font-mono text-[#2997ff]">01 / SHIELD</span>
-                    <h4 class="text-xl font-semibold text-[#f5f5f7] mt-3 mb-2">50,000+ Disposable List</h4>
+                    <span class="text-xs font-mono text-[#0071e3]">01 / SHIELD</span>
+                    <h4 class="text-2xl font-bold text-[#f5f5f7] mt-4 mb-3 tracking-tight">50,000+ burner domains.</h4>
                     <p class="text-sm text-[#86868b] leading-relaxed">
                         Instant identification of throwaway addresses from Mailinator, GuerrillaMail, 10MinuteMail, and over 50,000 active disposable domains.
                     </p>
                 </div>
             </div>
 
-            <!-- Bento 2 -->
-            <div class="apple-card rounded-3xl p-8 flex flex-col justify-between">
+            <!-- Card 2 -->
+            <div class="apple-card p-10 flex flex-col justify-between">
                 <div>
-                    <span class="text-xs font-mono text-[#2997ff]">02 / DNS</span>
-                    <h4 class="text-xl font-semibold text-[#f5f5f7] mt-3 mb-2">Live MX Record Discovery</h4>
+                    <span class="text-xs font-mono text-[#0071e3]">02 / DNS</span>
+                    <h4 class="text-2xl font-bold text-[#f5f5f7] mt-4 mb-3 tracking-tight">Live MX record resolution.</h4>
                     <p class="text-sm text-[#86868b] leading-relaxed">
-                        Asynchronous UDP DNS workers confirm destination mail exchangers exist and accept traffic without stalling your user onboarding flow.
+                        Asynchronous UDP DNS workers verify mail exchangers exist and accept inbound traffic without slowing down user onboarding.
                     </p>
                 </div>
             </div>
 
-            <!-- Bento 3 -->
-            <div class="apple-card rounded-3xl p-8 flex flex-col justify-between">
+            <!-- Card 3 -->
+            <div class="apple-card p-10 flex flex-col justify-between">
                 <div>
-                    <span class="text-xs font-mono text-[#2997ff]">03 / PARSER</span>
-                    <h4 class="text-xl font-semibold text-[#f5f5f7] mt-3 mb-2">RFC 5322 & Typo Healing</h4>
+                    <span class="text-xs font-mono text-[#0071e3]">03 / HEALING</span>
+                    <h4 class="text-2xl font-bold text-[#f5f5f7] mt-4 mb-3 tracking-tight">RFC 5322 & typo healing.</h4>
                     <p class="text-sm text-[#86868b] leading-relaxed">
-                        Strict regex syntax validation combined with algorithmic domain distance matching to catch accidental keystrokes before submission.
+                        Deep regular expression syntax validation combined with algorithmic domain distance matching to correct accidental keystrokes.
                     </p>
                 </div>
             </div>
 
-            <!-- Bento 4 -->
-            <div class="apple-card rounded-3xl p-8 flex flex-col justify-between">
+            <!-- Card 4 -->
+            <div class="apple-card p-10 flex flex-col justify-between">
                 <div>
-                    <span class="text-xs font-mono text-[#2997ff]">04 / RISK</span>
-                    <h4 class="text-xl font-semibold text-[#f5f5f7] mt-3 mb-2">Weighted Scoring Engine</h4>
+                    <span class="text-xs font-mono text-[#0071e3]">04 / ACCURACY</span>
+                    <h4 class="text-2xl font-bold text-[#f5f5f7] mt-4 mb-3 tracking-tight">Weighted 0–100 risk score.</h4>
                     <p class="text-sm text-[#86868b] leading-relaxed">
-                        Composite fraud calculation combining syntax, disposable tags, free provider markers, and MX presence into an unambiguous 0–100 score.
+                        Composite score combining syntax validity, disposable tags, free provider markers, and MX status into an actionable decision.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ==================== DEVELOPER QUICKSTART (APPLE STYLE) ==================== -->
-    <section id="developers" class="py-20 bg-[#0a0a0c] border-y border-white/[0.06] px-4 sm:px-6">
+    <!-- ==================== DEVELOPER INTEGRATION ==================== -->
+    <section id="developers" class="py-24 bg-[#0a0a0c] border-y border-white/[0.06] px-4 sm:px-6">
         <div class="max-w-3xl mx-auto">
-            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
                 <div>
-                    <h3 class="text-2xl font-bold tracking-tight text-[#f5f5f7]">Integrate seamlessly.</h3>
-                    <p class="text-xs text-[#86868b] mt-1">Plug into signup routes, payment gates, or worker queues.</p>
+                    <h3 class="text-3xl font-bold tracking-tight text-[#f5f5f7]">Integrate in minutes.</h3>
+                    <p class="text-sm text-[#86868b] mt-1">Plug directly into signup forms, payment gates, or worker queues.</p>
                 </div>
-                <!-- Apple Segmented Control -->
+                <!-- Segmented Control -->
                 <div class="apple-segmented-control flex items-center">
                     <button type="button" onclick="setAppleLang('curl')" id="seg-curl" class="apple-segmented-btn active">cURL</button>
                     <button type="button" onclick="setAppleLang('python')" id="seg-python" class="apple-segmented-btn">Python</button>
@@ -402,11 +394,11 @@
                 </div>
             </div>
 
-            <!-- Minimalist Code Box -->
-            <div class="apple-card rounded-3xl overflow-hidden">
-                <div class="px-5 py-3 border-b border-white/[0.08] flex items-center justify-between text-xs font-mono text-[#86868b]">
+            <!-- Code Window -->
+            <div class="apple-card overflow-hidden">
+                <div class="px-6 py-4 border-b border-white/[0.08] flex items-center justify-between text-xs font-mono text-[#86868b]">
                     <span id="appleCodeFile">verify.sh</span>
-                    <button type="button" onclick="copyAppleCode()" class="text-[#2997ff] hover:opacity-80 transition-opacity">
+                    <button type="button" onclick="copyAppleCode()" class="text-[#0071e3] hover:opacity-80 transition-opacity">
                         <span id="appleCopyText">Copy</span>
                     </button>
                 </div>
@@ -416,22 +408,22 @@
         </div>
     </section>
 
-    <!-- ==================== APPLE-STYLE PRICING ==================== -->
-    <section id="pricing" class="py-24 max-w-4xl mx-auto px-4 sm:px-6">
-        <div class="text-center mb-16">
-            <h2 class="text-xs font-semibold tracking-wider uppercase text-[#86868b] mb-2">Pricing</h2>
-            <h3 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#f5f5f7]">Predictable, transparent plans.</h3>
-            <p class="text-sm text-[#86868b] mt-2">Monetized securely through the RapidAPI Hub.</p>
+    <!-- ==================== PRICING ==================== -->
+    <section id="pricing" class="py-28 max-w-4xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-20">
+            <h2 class="text-xs font-semibold tracking-wider uppercase text-[#86868b] mb-3">Pricing</h2>
+            <h3 class="text-4xl sm:text-5xl font-bold tracking-tight text-[#f5f5f7]">Simple, transparent plans.</h3>
+            <p class="text-base text-[#86868b] mt-2">Monetized securely through the RapidAPI Hub.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Basic Tier -->
-            <div class="apple-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
+            <!-- Basic -->
+            <div class="apple-card p-8 flex flex-col justify-between">
                 <div>
-                    <h4 class="text-sm font-semibold text-[#f5f5f7]">Basic</h4>
-                    <div class="mt-4 text-3xl font-bold text-[#f5f5f7] tracking-tight">$0</div>
+                    <h4 class="text-base font-semibold text-[#f5f5f7]">Basic</h4>
+                    <div class="mt-4 text-4xl font-bold text-[#f5f5f7] tracking-tight">$0</div>
                     <p class="text-xs text-[#86868b] mt-1">Free forever</p>
-                    <ul class="mt-6 space-y-3 text-xs text-[#86868b]">
+                    <ul class="mt-8 space-y-3.5 text-xs text-[#86868b]">
                         <li class="flex items-center gap-2"><i class="fa-solid fa-check text-white text-[10px]"></i> 1,000 requests / month</li>
                         <li class="flex items-center gap-2"><i class="fa-solid fa-check text-white text-[10px]"></i> Disposable Domain Check</li>
                         <li class="flex items-center gap-2"><i class="fa-solid fa-check text-white text-[10px]"></i> Real-time DNS MX</li>
@@ -439,41 +431,41 @@
                     </ul>
                 </div>
                 <a href="https://rapidapi.com/jasdebarreau3/api/veripulse-email-verification-and-fraud-detection" target="_blank" rel="noopener noreferrer"
-                   class="apple-pill-secondary mt-8 text-xs !py-2 text-center w-full">
+                   class="apple-pill-secondary mt-10 text-xs !py-2.5 text-center w-full">
                     Start Free
                 </a>
             </div>
 
-            <!-- Pro Tier (Highlighted) -->
-            <div class="apple-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-white/30 bg-[#1f1f23]">
+            <!-- Pro -->
+            <div class="apple-card p-8 flex flex-col justify-between border-white/30 bg-[#1a1a1d]">
                 <div>
                     <div class="flex items-center justify-between">
-                        <h4 class="text-sm font-semibold text-[#f5f5f7]">Pro</h4>
-                        <span class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-[#0071e3] text-white">Popular</span>
+                        <h4 class="text-base font-semibold text-[#f5f5f7]">Pro</h4>
+                        <span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-[#0071e3] text-white">Popular</span>
                     </div>
-                    <div class="mt-4 text-3xl font-bold text-[#f5f5f7] tracking-tight">$14.99</div>
+                    <div class="mt-4 text-4xl font-bold text-[#f5f5f7] tracking-tight">$14.99</div>
                     <p class="text-xs text-[#86868b] mt-1">per month</p>
-                    <ul class="mt-6 space-y-3 text-xs text-[#f5f5f7]">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2997ff] text-[10px]"></i> <strong>15,000 requests</strong> / mo</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2997ff] text-[10px]"></i> Low $0.002 overage rate</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2997ff] text-[10px]"></i> Priority Cloud Routing</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2997ff] text-[10px]"></i> Typo Correction Engine</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2997ff] text-[10px]"></i> Commercial SaaS License</li>
+                    <ul class="mt-8 space-y-3.5 text-xs text-[#f5f5f7]">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#0071e3] text-[10px]"></i> <strong>15,000 requests</strong> / mo</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#0071e3] text-[10px]"></i> $0.002 overage rate</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#0071e3] text-[10px]"></i> Priority Cloud Routing</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#0071e3] text-[10px]"></i> Typo Correction Engine</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#0071e3] text-[10px]"></i> Commercial SaaS License</li>
                     </ul>
                 </div>
                 <a href="https://rapidapi.com/jasdebarreau3/api/veripulse-email-verification-and-fraud-detection" target="_blank" rel="noopener noreferrer"
-                   class="apple-pill-btn mt-8 text-xs !py-2 text-center w-full">
+                   class="apple-pill-btn mt-10 text-xs !py-2.5 text-center w-full">
                     Subscribe
                 </a>
             </div>
 
-            <!-- Ultra Tier -->
-            <div class="apple-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
+            <!-- Ultra -->
+            <div class="apple-card p-8 flex flex-col justify-between">
                 <div>
-                    <h4 class="text-sm font-semibold text-[#f5f5f7]">Ultra</h4>
-                    <div class="mt-4 text-3xl font-bold text-[#f5f5f7] tracking-tight">$49.00</div>
+                    <h4 class="text-base font-semibold text-[#f5f5f7]">Ultra</h4>
+                    <div class="mt-4 text-4xl font-bold text-[#f5f5f7] tracking-tight">$49.00</div>
                     <p class="text-xs text-[#86868b] mt-1">per month</p>
-                    <ul class="mt-6 space-y-3 text-xs text-[#86868b]">
+                    <ul class="mt-8 space-y-3.5 text-xs text-[#86868b]">
                         <li class="flex items-center gap-2"><i class="fa-solid fa-check text-white text-[10px]"></i> <strong>60,000 requests</strong> / mo</li>
                         <li class="flex items-center gap-2"><i class="fa-solid fa-check text-white text-[10px]"></i> Lowest $0.0015 overage</li>
                         <li class="flex items-center gap-2"><i class="fa-solid fa-check text-white text-[10px]"></i> Bulk Batch Endpoint</li>
@@ -481,18 +473,18 @@
                     </ul>
                 </div>
                 <a href="https://rapidapi.com/jasdebarreau3/api/veripulse-email-verification-and-fraud-detection" target="_blank" rel="noopener noreferrer"
-                   class="apple-pill-secondary mt-8 text-xs !py-2 text-center w-full">
+                   class="apple-pill-secondary mt-10 text-xs !py-2.5 text-center w-full">
                     Subscribe
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- ==================== APPLE-STYLE MINIMAL FOOTER ==================== -->
-    <footer class="py-12 border-t border-white/[0.08] text-xs text-[#86868b] px-4 sm:px-6">
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="py-14 border-t border-white/[0.08] text-xs text-[#86868b] px-4 sm:px-6">
         <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-2 text-white">
-                <i class="fa-solid fa-shield-halved text-xs text-[#2997ff]"></i>
+                <i class="fa-solid fa-shield-halved text-xs text-[#0071e3]"></i>
                 <span class="font-medium">VeriPulse Labs</span>
             </div>
             
@@ -509,7 +501,7 @@
         </div>
     </footer>
 
-    <!-- ==================== SCRIPT ==================== -->
+    <!-- ==================== JAVASCRIPT ==================== -->
     <script>
         const API_BASE = 'https://veripulse-ixwr.onrender.com/v1';
 
@@ -567,15 +559,15 @@
             const action = data.recommended_action || 'ALLOW';
 
             if (action === 'BLOCK') {
-                badge.className = 'text-sm font-semibold px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30';
+                badge.className = 'text-sm font-semibold px-3.5 py-1 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30';
                 badge.innerText = 'BLOCK';
                 sub.innerText = (data.reasons && data.reasons[0]) || 'Disposable burner or high risk detected';
             } else if (action === 'FLAG') {
-                badge.className = 'text-sm font-semibold px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30';
+                badge.className = 'text-sm font-semibold px-3.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30';
                 badge.innerText = 'FLAG';
                 sub.innerText = (data.reasons && data.reasons[0]) || 'Warning / Deliverability risk';
             } else {
-                badge.className = 'text-sm font-semibold px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+                badge.className = 'text-sm font-semibold px-3.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
                 badge.innerText = 'ALLOW';
                 sub.innerText = 'Clean deliverable address on active mail server';
             }
@@ -596,7 +588,7 @@
 
             const chkProv = document.getElementById('appleCheckProvider');
             chkProv.innerText = data.is_free_provider ? 'Consumer Free Mail' : 'Corporate Domain';
-            chkProv.className = data.is_free_provider ? 'font-medium text-amber-400' : 'font-medium text-[#2997ff]';
+            chkProv.className = data.is_free_provider ? 'font-medium text-amber-400' : 'font-medium text-[#0071e3]';
 
             const typoNotice = document.getElementById('appleTypoNotice');
             const typoTarget = document.getElementById('appleTypoTarget');
@@ -611,7 +603,7 @@
         }
 
         function renderAppleFallback(email) {
-            document.getElementById('appleBadgeAction').className = 'text-sm font-semibold px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30';
+            document.getElementById('appleBadgeAction').className = 'text-sm font-semibold px-3.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30';
             document.getElementById('appleBadgeAction').innerText = 'OFFLINE';
             document.getElementById('appleResultSubtext').innerText = 'Cloud cluster warming up';
             document.getElementById('appleRawJson').innerText = JSON.stringify({ error: 'Server warming up from idle', email: email }, null, 2);
