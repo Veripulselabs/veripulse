@@ -19,6 +19,7 @@ from core.disposable_filter import is_disposable_domain
 from core.dns_resolver import check_mx
 from core.risk_engine import RiskEngine
 from core.phone_checker import PhoneChecker
+from core.rate_limiter import rate_limiter
 
 LEGAL_DESCRIPTION = f"""{settings.DESCRIPTION}
 
@@ -55,11 +56,43 @@ app.add_middleware(
 )
 
 @app.middleware("http")
-async def add_legal_compliance_headers(request: Request, call_next):
+async def security_and_compliance_middleware(request: Request, call_next):
+    # Enforce digital turnstile rate limiting on public API endpoints under /v1/
+    remaining_reqs = None
+    if request.url.path.startswith("/v1/"):
+        rapid_secret = request.headers.get("x-rapidapi-proxy-secret")
+        is_rapid = bool(settings.RAPIDAPI_PROXY_SECRET and rapid_secret == settings.RAPIDAPI_PROXY_SECRET)
+        
+        if not is_rapid:
+            client_ip = (
+                request.headers.get("cf-connecting-ip")
+                or request.headers.get("x-forwarded-for", "").split(",")[0].strip()
+                or (request.client.host if request.client else "127.0.0.1")
+            )
+            is_limited, remaining_reqs = rate_limiter.is_rate_limited(client_ip)
+            if is_limited:
+                return JSONResponse(
+                    status_code=429,
+                    content={
+                        "detail": "Rate limit exceeded. Maximum 60 requests per minute allowed.",
+                        "terms": "https://veripulselabs.com/terms.html"
+                    },
+                    headers={
+                        "Retry-After": "60",
+                        "X-RateLimit-Limit": "60",
+                        "X-RateLimit-Remaining": "0",
+                        "X-Terms-Of-Service": "https://veripulselabs.com/terms.html",
+                        "X-Liability-Cap": "Max aggregate liability capped at $50.00 USD under D.C. Law"
+                    }
+                )
+
     response = await call_next(request)
     response.headers["X-Terms-Of-Service"] = "https://veripulselabs.com/terms.html"
     response.headers["X-Warranty-Disclaimer"] = "Heuristic scoring provided AS IS under VeriPulse Developer Terms"
     response.headers["X-Liability-Cap"] = "Max aggregate liability capped at $50.00 USD under D.C. Law"
+    if remaining_reqs is not None:
+        response.headers["X-RateLimit-Limit"] = "60"
+        response.headers["X-RateLimit-Remaining"] = str(remaining_reqs)
     return response
 
 from fastapi.staticfiles import StaticFiles

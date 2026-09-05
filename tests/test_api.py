@@ -89,3 +89,33 @@ async def test_verify_batch():
     data = response.json()
     assert data["total_processed"] == 2
     assert len(data["results"]) == 2
+
+@pytest.mark.anyio
+async def test_compliance_and_rate_limiting():
+    from core.rate_limiter import rate_limiter
+    rate_limiter.reset()
+
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as ac:
+        # Check legal headers on standard response
+        res = await ac.get("/v1/verify?email=test@example.com")
+        assert res.status_code == 200
+        assert "X-Terms-Of-Service" in res.headers
+        assert "X-Liability-Cap" in res.headers
+        assert "X-RateLimit-Limit" in res.headers
+        assert res.headers["X-RateLimit-Limit"] == "60"
+
+        # Simulate flood to test digital turnstile (exceed limit)
+        for _ in range(65):
+            res = await ac.get("/v1/verify?email=test@example.com")
+            if res.status_code == 429:
+                break
+
+        assert res.status_code == 429
+        assert res.headers.get("Retry-After") == "60"
+        assert "X-Terms-Of-Service" in res.headers
+        assert "X-Liability-Cap" in res.headers
+        assert "Rate limit exceeded" in res.json()["detail"]
+    
+    rate_limiter.reset()
+
