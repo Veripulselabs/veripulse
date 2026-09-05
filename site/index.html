@@ -151,8 +151,9 @@
             </a>
 
             <!-- Editorial Nav Links -->
-            <nav class="hidden md:flex items-center space-x-7 text-xs font-normal text-[#86868b]">
+            <nav class="hidden md:flex items-center space-x-6 text-xs font-normal text-[#86868b]">
                 <a href="#overview" class="hover:text-[#f5f5f7] transition-colors">Overview</a>
+                <a href="#apis" class="hover:text-[#f5f5f7] transition-colors">APIs</a>
                 <a href="#sandbox" class="hover:text-[#f5f5f7] transition-colors">Demo</a>
                 <a href="#highlights" class="hover:text-[#f5f5f7] transition-colors">Highlights</a>
                 <a href="#developers" class="hover:text-[#f5f5f7] transition-colors">Developers</a>
@@ -223,6 +224,154 @@
         </div>
     </section>
 
+    <!-- ==================== THE 3 APIS PORTFOLIO ==================== -->
+    <section id="apis" class="py-24 max-w-5xl mx-auto px-4 sm:px-6 border-t border-white/[0.08]">
+        <div class="text-center mb-16">
+            <h2 class="text-xs font-semibold tracking-wider uppercase text-[#0071e3] mb-3">The Portfolio</h2>
+            <h3 class="text-4xl sm:text-5xl font-bold tracking-tight text-[#f5f5f7] leading-tight">
+                Three specialized engines.<br>
+                <span class="text-[#86868b]">One unified standard of trust.</span>
+            </h3>
+            <p class="text-base text-[#86868b] mt-4 max-w-2xl mx-auto">
+                Deploy individually or combine forces. Each microservice is engineered for sub-50ms execution, zero data retention, and instant developer integration.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- API 1: VeriPulse Email -->
+            <div class="apple-card p-8 flex flex-col justify-between group hover:border-[#0071e3]/40 transition-all">
+                <div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-mono text-[#0071e3] tracking-wider uppercase">01 / EMAIL</span>
+                        <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/[0.06] text-[#86868b] border border-white/[0.08]">&lt;40ms SLA</span>
+                    </div>
+                    <h4 class="text-2xl font-bold text-[#f5f5f7] mt-4 mb-2 tracking-tight">VeriPulse Email</h4>
+                    <p class="text-xs text-[#86868b] leading-relaxed mb-6">
+                        Ultra-fast deliverability screening, RFC 5322 syntax evaluation, and active defense against 50,000+ burner domains.
+                    </p>
+
+                    <div class="space-y-3 pt-6 border-t border-white/[0.08] text-xs text-[#f5f5f7]">
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-check text-[#0071e3] text-[10px]"></i>
+                            <span>50,000+ disposable domain database</span>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-check text-[#0071e3] text-[10px]"></i>
+                            <span>Asynchronous UDP DNS MX resolution</span>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-check text-[#0071e3] text-[10px]"></i>
+                            <span>Algorithmic typo healing (e.g. gnail)</span>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-check text-[#0071e3] text-[10px]"></i>
+                            <span>0–100 Weighted risk score</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-white/[0.08] flex items-center justify-between gap-3">
+                    <button type="button" onclick="switchDemoMode('email')" class="text-xs text-[#86868b] hover:text-white transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-play text-[10px] text-[#0071e3]"></i> Try Demo
+                    </button>
+                    <a href="https://rapidapi.com/jasdebarreau3/api/veripulse-email-verification-and-fraud-detection" target="_blank" rel="noopener noreferrer"
+                       class="apple-pill-secondary text-xs !py-2 !px-4">
+                        <span>RapidAPI</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- API 2: NumGuard Phone -->
+            <div class="apple-card p-8 flex flex-col justify-between group hover:border-[#0071e3]/40 transition-all">
+                <div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-mono text-[#0071e3] tracking-wider uppercase">02 / TELECOM</span>
+                        <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/[0.06] text-[#86868b] border border-white/[0.08]">&lt;25ms SLA</span>
+                    </div>
+                    <h4 class="text-2xl font-bold text-[#f5f5f7] mt-4 mb-2 tracking-tight">NumGuard Phone</h4>
+                    <p class="text-xs text-[#86868b] leading-relaxed mb-6">
+                        Carrier intelligence and VoIP fraud blocker. Detects disposable virtual numbers from Twilio, Google Voice, and TextNow.
+                    </p>
+
+                    <div class="space-y-3 pt-6 border-t border-white/[0.08] text-xs text-[#f5f5f7]">
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-check text-[#0071e3] text-[10px]"></i>
+                            <span>VoIP & virtual burner number detection</span>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-check text-[#0071e3] text-[10px]"></i>
+                            <span>Carrier & mobile network identification</span>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-check text-[#0071e3] text-[10px]"></i>
+                            <span>Line type (Mobile, Landline, VoIP)</span>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-check text-[#0071e3] text-[10px]"></i>
+                            <span>E.164, National & RFC 3966 formats</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-white/[0.08] flex items-center justify-between gap-3">
+                    <button type="button" onclick="switchDemoMode('phone')" class="text-xs text-[#86868b] hover:text-white transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-play text-[10px] text-[#0071e3]"></i> Try Demo
+                    </button>
+                    <a href="https://rapidapi.com/jasdebarreau3/api/numguard-phone-voip-fraud-detection" target="_blank" rel="noopener noreferrer"
+                       class="apple-pill-secondary text-xs !py-2 !px-4">
+                        <span>RapidAPI</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- API 3: VeriPulse Trust Intelligence -->
+            <div class="apple-card p-8 flex flex-col justify-between border-[#0071e3]/40 bg-[#141724] group hover:border-[#0071e3] transition-all">
+                <div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-mono text-[#0071e3] tracking-wider uppercase">03 / UNIFIED</span>
+                        <span class="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-[#0071e3] text-white">Flagship</span>
+                    </div>
+                    <h4 class="text-2xl font-bold text-[#f5f5f7] mt-4 mb-2 tracking-tight">Trust Intelligence</h4>
+                    <p class="text-xs text-[#86868b] leading-relaxed mb-6">
+                        The automated digital tollbooth. Combines Email Deliverability and Phone Fraud Intelligence into a single 0–100 Trust Score.
+                    </p>
+
+                    <div class="space-y-3 pt-6 border-t border-white/[0.08] text-xs text-[#f5f5f7]">
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-check text-[#0071e3] text-[10px]"></i>
+                            <span>Unified single-payload verification</span>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-check text-[#0071e3] text-[10px]"></i>
+                            <span>Cross-vector email & phone correlation</span>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-check text-[#0071e3] text-[10px]"></i>
+                            <span>Single ALLOW / FLAG / BLOCK verdict</span>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-check text-[#0071e3] text-[10px]"></i>
+                            <span>Zero-retention volatile processing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-white/[0.08] flex items-center justify-between gap-3">
+                    <a href="#developers" class="text-xs text-[#86868b] hover:text-white transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-code text-[10px] text-[#0071e3]"></i> View Code
+                    </a>
+                    <a href="https://rapidapi.com/jasdebarreau3/api/veripulse-trust-intelligence-api" target="_blank" rel="noopener noreferrer"
+                       class="apple-pill-btn text-xs !py-2 !px-4">
+                        <span>RapidAPI</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ==================== LIVE DEMO SANDBOX ==================== -->
     <section id="sandbox" class="py-24 px-4 sm:px-6 bg-[#0a0a0c] border-y border-white/[0.06]">
         <div class="max-w-2xl mx-auto">
@@ -234,15 +383,27 @@
 
             <!-- Apple Intelligence Style Showcase Card -->
             <div class="apple-card p-6 sm:p-8">
-                <!-- Status Top -->
-                <div class="flex items-center justify-between pb-6 border-b border-white/[0.08] text-xs">
-                    <div class="flex items-center space-x-2">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                        <span class="text-[#f5f5f7] font-medium">Cloud Engine Active</span>
+                <!-- Status Top with Segmented Control for Email vs Phone -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/[0.08] text-xs">
+                    <!-- Segmented Control -->
+                    <div class="apple-segmented-control flex items-center self-start sm:self-auto">
+                        <button type="button" onclick="switchDemoMode('email')" id="demo-tab-email" class="apple-segmented-btn active">
+                            <i class="fa-regular fa-envelope mr-1.5"></i> VeriPulse Email
+                        </button>
+                        <button type="button" onclick="switchDemoMode('phone')" id="demo-tab-phone" class="apple-segmented-btn">
+                            <i class="fa-solid fa-phone mr-1.5"></i> NumGuard Phone
+                        </button>
                     </div>
-                    <div id="demoBenchmarkBadge" class="hidden text-xs font-mono text-[#0071e3] flex items-center gap-1.5 font-medium">
-                        <i class="fa-solid fa-bolt text-[11px]"></i>
-                        <span id="demoBenchmarkVal">38ms</span>
+
+                    <div class="flex items-center space-x-3">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                            <span id="demoEngineName" class="text-[#f5f5f7] font-medium">VeriPulse Virginia Active</span>
+                        </div>
+                        <div id="demoBenchmarkBadge" class="hidden text-xs font-mono text-[#0071e3] flex items-center gap-1.5 font-medium">
+                            <i class="fa-solid fa-bolt text-[11px]"></i>
+                            <span id="demoBenchmarkVal">38ms</span>
+                        </div>
                     </div>
                 </div>
 
@@ -259,8 +420,8 @@
                     </div>
                 </form>
 
-                <!-- Preset Pills -->
-                <div class="flex flex-wrap items-center gap-2 mt-4 text-xs">
+                <!-- Preset Pills Email -->
+                <div id="demoPresetEmail" class="flex flex-wrap items-center gap-2 mt-4 text-xs">
                     <span class="text-[#86868b]">Sample tests:</span>
                     <button type="button" onclick="setApplePreset('user@gmail.com')" class="px-3 py-1 rounded-full bg-white/[0.05] hover:bg-white/[0.1] text-[#f5f5f7] transition-colors">
                         Consumer Free
@@ -270,6 +431,20 @@
                     </button>
                     <button type="button" onclick="setApplePreset('alex@gnail.com')" class="px-3 py-1 rounded-full bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/20 transition-colors">
                         Typo Suggestion
+                    </button>
+                </div>
+
+                <!-- Preset Pills Phone -->
+                <div id="demoPresetPhone" class="hidden flex flex-wrap items-center gap-2 mt-4 text-xs">
+                    <span class="text-[#86868b]">Sample tests:</span>
+                    <button type="button" onclick="setApplePreset('+14155552671')" class="px-3 py-1 rounded-full bg-white/[0.05] hover:bg-white/[0.1] text-[#f5f5f7] transition-colors">
+                        Clean Mobile (+1 415)
+                    </button>
+                    <button type="button" onclick="setApplePreset('+12025550143')" class="px-3 py-1 rounded-full bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/20 transition-colors">
+                        VoIP / Virtual (+1 202)
+                    </button>
+                    <button type="button" onclick="setApplePreset('+18005550199')" class="px-3 py-1 rounded-full bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/20 transition-colors">
+                        Toll-Free (+1 800)
                     </button>
                 </div>
 
@@ -295,22 +470,22 @@
                         </div>
                     </div>
 
-                    <!-- Checklist -->
+                    <!-- Checklist (Dynamic for Email and Phone) -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                         <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
-                            <span class="text-[#86868b]">RFC 5322 Syntax</span>
+                            <span id="chkLabel1" class="text-[#86868b]">RFC 5322 Syntax</span>
                             <span id="appleCheckSyntax" class="font-medium text-emerald-400">Valid</span>
                         </div>
                         <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
-                            <span class="text-[#86868b]">Disposable Domain</span>
+                            <span id="chkLabel2" class="text-[#86868b]">Disposable Domain</span>
                             <span id="appleCheckDisposable" class="font-medium text-emerald-400">Clean</span>
                         </div>
                         <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
-                            <span class="text-[#86868b]">DNS Mail Exchange</span>
+                            <span id="chkLabel3" class="text-[#86868b]">DNS Mail Exchange</span>
                             <span id="appleCheckMx" class="font-medium text-emerald-400">Resolved</span>
                         </div>
                         <div class="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
-                            <span class="text-[#86868b]">Mailbox Provider</span>
+                            <span id="chkLabel4" class="text-[#86868b]">Mailbox Provider</span>
                             <span id="appleCheckProvider" class="font-medium text-[#0071e3]">Corporate Domain</span>
                         </div>
                     </div>
@@ -390,13 +565,25 @@
     <!-- ==================== DEVELOPER INTEGRATION ==================== -->
     <section id="developers" class="py-24 bg-[#0a0a0c] border-y border-white/[0.06] px-4 sm:px-6">
         <div class="max-w-3xl mx-auto">
-            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
                 <div>
                     <h3 class="text-3xl font-bold tracking-tight text-[#f5f5f7]">Integrate in minutes.</h3>
                     <p class="text-sm text-[#86868b] mt-1">Plug directly into signup forms, payment gates, or worker queues.</p>
                 </div>
-                <!-- Segmented Control -->
+                <!-- API Choice -->
                 <div class="apple-segmented-control flex items-center">
+                    <button type="button" onclick="setDevApi('email')" id="dev-api-email" class="apple-segmented-btn active">Email</button>
+                    <button type="button" onclick="setDevApi('phone')" id="dev-api-phone" class="apple-segmented-btn">Phone</button>
+                    <button type="button" onclick="setDevApi('unified')" id="dev-api-unified" class="apple-segmented-btn">Unified</button>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 px-1">
+                <span id="devApiEndpointNotice" class="text-xs text-[#86868b] font-mono">
+                    Endpoint: <span class="text-[#0071e3]">GET https://veripulse-ixwr.onrender.com/v1/verify</span>
+                </span>
+                <!-- Language Choice -->
+                <div class="apple-segmented-control flex items-center self-start sm:self-auto">
                     <button type="button" onclick="setAppleLang('curl')" id="seg-curl" class="apple-segmented-btn active">cURL</button>
                     <button type="button" onclick="setAppleLang('python')" id="seg-python" class="apple-segmented-btn">Python</button>
                     <button type="button" onclick="setAppleLang('javascript')" id="seg-javascript" class="apple-segmented-btn">Node.js</button>
@@ -602,10 +789,43 @@
 
     <!-- ==================== JAVASCRIPT ==================== -->
     <script>
-        const API_BASE = 'https://veripulse-ixwr.onrender.com/v1';
+        const API_EMAIL = 'https://veripulse-ixwr.onrender.com/v1';
+        const API_PHONE = 'https://numguard-43tw.onrender.com/v1';
 
-        function setApplePreset(email) {
-            document.getElementById('appleDemoInput').value = email;
+        let activeDemoMode = 'email'; // 'email' or 'phone'
+
+        function switchDemoMode(mode) {
+            activeDemoMode = mode;
+            const tabEmail = document.getElementById('demo-tab-email');
+            const tabPhone = document.getElementById('demo-tab-phone');
+            const input = document.getElementById('appleDemoInput');
+            const preEmail = document.getElementById('demoPresetEmail');
+            const prePhone = document.getElementById('demoPresetPhone');
+            const engineLabel = document.getElementById('demoEngineName');
+
+            if (mode === 'phone') {
+                tabPhone.classList.add('active');
+                tabEmail.classList.remove('active');
+                input.placeholder = "Enter phone number (e.g. +1 415-555-2671)";
+                input.value = "+14155552671";
+                prePhone.classList.remove('hidden');
+                preEmail.classList.add('hidden');
+                engineLabel.innerText = "NumGuard Virginia Active";
+                document.getElementById('appleTypoNotice').classList.add('hidden');
+            } else {
+                tabEmail.classList.add('active');
+                tabPhone.classList.remove('active');
+                input.placeholder = "Enter email address (e.g. user@gmail.com)";
+                input.value = "ceo@veripulselabs.com";
+                preEmail.classList.remove('hidden');
+                prePhone.classList.add('hidden');
+                engineLabel.innerText = "VeriPulse Virginia Active";
+            }
+            runAppleDemo(new Event('submit'));
+        }
+
+        function setApplePreset(val) {
+            document.getElementById('appleDemoInput').value = val;
             runAppleDemo(new Event('submit'));
         }
 
@@ -618,9 +838,9 @@
             if (e && e.preventDefault) e.preventDefault();
             const input = document.getElementById('appleDemoInput');
             const btn = document.getElementById('appleDemoBtn');
-            const email = (input.value || '').trim();
+            const val = (input.value || '').trim();
 
-            if (!email) return;
+            if (!val) return;
 
             btn.disabled = true;
             btn.innerText = 'Testing...';
@@ -628,7 +848,11 @@
             const start = performance.now();
 
             try {
-                const res = await fetch(`${API_BASE}/verify?email=${encodeURIComponent(email)}`);
+                const targetUrl = activeDemoMode === 'phone'
+                    ? `${API_PHONE}/validate?phone=${encodeURIComponent(val)}`
+                    : `${API_EMAIL}/verify?email=${encodeURIComponent(val)}`;
+
+                const res = await fetch(targetUrl);
                 const end = performance.now();
                 const latency = Math.round(end - start);
 
@@ -639,13 +863,17 @@
 
                 if (res.ok) {
                     const data = await res.json();
-                    renderAppleResult(data);
+                    if (activeDemoMode === 'phone') {
+                        renderNumGuardResult(data);
+                    } else {
+                        renderAppleResult(data);
+                    }
                 } else {
-                    renderAppleFallback(email);
+                    renderAppleFallback(val);
                 }
             } catch (err) {
                 console.error(err);
-                renderAppleFallback(email);
+                renderAppleFallback(val);
             } finally {
                 btn.disabled = false;
                 btn.innerText = 'Verify';
@@ -653,6 +881,12 @@
         }
 
         function renderAppleResult(data) {
+            // Restore Email checklist labels
+            document.getElementById('chkLabel1').innerText = 'RFC 5322 Syntax';
+            document.getElementById('chkLabel2').innerText = 'Disposable Domain';
+            document.getElementById('chkLabel3').innerText = 'DNS Mail Exchange';
+            document.getElementById('chkLabel4').innerText = 'Mailbox Provider';
+
             const badge = document.getElementById('appleBadgeAction');
             const sub = document.getElementById('appleResultSubtext');
             const action = data.recommended_action || 'ALLOW';
@@ -701,17 +935,82 @@
             document.getElementById('appleRawJson').innerText = JSON.stringify(data, null, 2);
         }
 
-        function renderAppleFallback(email) {
+        function renderNumGuardResult(data) {
+            // Set Phone checklist labels
+            document.getElementById('chkLabel1').innerText = 'E.164 Format';
+            document.getElementById('chkLabel2').innerText = 'Line Type';
+            document.getElementById('chkLabel3').innerText = 'Carrier / Network';
+            document.getElementById('chkLabel4').innerText = 'Region & Country';
+
+            const badge = document.getElementById('appleBadgeAction');
+            const sub = document.getElementById('appleResultSubtext');
+            const action = data.recommended_action || (data.risk_score > 50 ? 'BLOCK' : 'ALLOW');
+
+            if (action === 'BLOCK' || (data.carrier && data.carrier.is_virtual)) {
+                badge.className = 'text-sm font-semibold px-3.5 py-1 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30';
+                badge.innerText = 'BLOCK';
+                sub.innerText = (data.reasons && data.reasons[0]) || 'VoIP / Disposable virtual number detected';
+            } else if (action === 'FLAG') {
+                badge.className = 'text-sm font-semibold px-3.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30';
+                badge.innerText = 'FLAG';
+                sub.innerText = (data.reasons && data.reasons[0]) || 'Toll-free or unassigned carrier';
+            } else {
+                badge.className = 'text-sm font-semibold px-3.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+                badge.innerText = 'ALLOW';
+                sub.innerText = 'Legitimate mobile subscriber line verified';
+            }
+
+            document.getElementById('appleScoreNum').innerText = data.risk_score !== undefined ? data.risk_score : 15;
+
+            const chk1 = document.getElementById('appleCheckSyntax');
+            chk1.innerText = (data.formats && data.formats.e164) || 'Valid Standard';
+            chk1.className = data.is_valid ? 'font-medium text-emerald-400' : 'font-medium text-rose-400';
+
+            const chk2 = document.getElementById('appleCheckDisposable');
+            const lineType = (data.carrier && data.carrier.line_type) || 'MOBILE';
+            chk2.innerText = lineType;
+            chk2.className = (data.carrier && data.carrier.is_virtual) ? 'font-medium text-rose-400' : 'font-medium text-emerald-400';
+
+            const chk3 = document.getElementById('appleCheckMx');
+            chk3.innerText = (data.carrier && data.carrier.name) || 'Tier-1 Telecom';
+            chk3.className = 'font-medium text-[#0071e3]';
+
+            const chk4 = document.getElementById('appleCheckProvider');
+            const loc = (data.location && (data.location.region || data.location.country_name)) || 'United States';
+            chk4.innerText = loc;
+            chk4.className = 'font-medium text-emerald-400';
+
+            document.getElementById('appleTypoNotice').classList.add('hidden');
+            document.getElementById('appleRawJson').innerText = JSON.stringify(data, null, 2);
+        }
+
+        function renderAppleFallback(val) {
             document.getElementById('appleBadgeAction').className = 'text-sm font-semibold px-3.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30';
             document.getElementById('appleBadgeAction').innerText = 'OFFLINE';
             document.getElementById('appleResultSubtext').innerText = 'Cloud cluster warming up';
-            document.getElementById('appleRawJson').innerText = JSON.stringify({ error: 'Server warming up from idle', email: email }, null, 2);
+            document.getElementById('appleRawJson').innerText = JSON.stringify({ error: 'Server warming up from idle', target: val }, null, 2);
         }
 
-        const SNIPPETS = {
-            curl: `curl -X GET "https://veripulse-ixwr.onrender.com/v1/verify?email=user@example.com" \\\n     -H "Accept: application/json"`,
-            python: `import requests\n\nres = requests.get(\n    "https://veripulse-ixwr.onrender.com/v1/verify",\n    params={"email": "user@example.com"}\n)\nprint(res.json())`,
-            javascript: `const res = await fetch("https://veripulse-ixwr.onrender.com/v1/verify?email=user@example.com");\nconst data = await res.json();\nconsole.log(data);`
+        // ================= Developer Code Snippets =================
+        const CODE_REPO = {
+            email: {
+                endpoint: 'GET https://veripulse-ixwr.onrender.com/v1/verify',
+                curl: `curl -X GET "https://veripulse-ixwr.onrender.com/v1/verify?email=user@example.com" \\\n     -H "Accept: application/json"`,
+                python: `import requests\n\nres = requests.get(\n    "https://veripulse-ixwr.onrender.com/v1/verify",\n    params={"email": "user@example.com"}\n)\nprint(res.json())`,
+                javascript: `const res = await fetch("https://veripulse-ixwr.onrender.com/v1/verify?email=user@example.com");\nconst data = await res.json();\nconsole.log(data);`
+            },
+            phone: {
+                endpoint: 'GET https://numguard-43tw.onrender.com/v1/validate',
+                curl: `curl -X GET "https://numguard-43tw.onrender.com/v1/validate?phone=%2B14155552671" \\\n     -H "Accept: application/json"`,
+                python: `import requests\n\nres = requests.get(\n    "https://numguard-43tw.onrender.com/v1/validate",\n    params={"phone": "+14155552671"}\n)\nprint(res.json())`,
+                javascript: `const res = await fetch("https://numguard-43tw.onrender.com/v1/validate?phone=" + encodeURIComponent("+14155552671"));\nconst data = await res.json();\nconsole.log(data);`
+            },
+            unified: {
+                endpoint: 'GET https://veripulse-ixwr.onrender.com/v1/score',
+                curl: `curl -X GET "https://veripulse-ixwr.onrender.com/v1/score?email=user@example.com&phone=%2B14155552671" \\\n     -H "Accept: application/json"`,
+                python: `import requests\n\nres = requests.get(\n    "https://veripulse-ixwr.onrender.com/v1/score",\n    params={"email": "user@example.com", "phone": "+14155552671"}\n)\nprint(res.json())`,
+                javascript: `const res = await fetch("https://veripulse-ixwr.onrender.com/v1/score?email=user@example.com&phone=" + encodeURIComponent("+14155552671"));\nconst data = await res.json();\nconsole.log(data);`
+            }
         };
 
         const FILES = {
@@ -720,18 +1019,31 @@
             javascript: 'verify.js'
         };
 
-        let currentLang = 'curl';
+        let currentDevApi = 'email';
+        let currentDevLang = 'curl';
+
+        function setDevApi(api) {
+            currentDevApi = api;
+            document.querySelectorAll('#dev-api-email, #dev-api-phone, #dev-api-unified').forEach(b => b.classList.remove('active'));
+            document.getElementById(`dev-api-${api}`).classList.add('active');
+            document.getElementById('devApiEndpointNotice').innerHTML = `Endpoint: <span class="text-[#0071e3]">${CODE_REPO[api].endpoint}</span>`;
+            updateDevCodeView();
+        }
 
         function setAppleLang(lang) {
-            currentLang = lang;
-            document.querySelectorAll('.apple-segmented-btn').forEach(b => b.classList.remove('active'));
+            currentDevLang = lang;
+            document.querySelectorAll('#seg-curl, #seg-python, #seg-javascript').forEach(b => b.classList.remove('active'));
             document.getElementById(`seg-${lang}`).classList.add('active');
-            document.getElementById('appleCodeContent').innerText = SNIPPETS[lang];
-            document.getElementById('appleCodeFile').innerText = FILES[lang];
+            updateDevCodeView();
+        }
+
+        function updateDevCodeView() {
+            document.getElementById('appleCodeContent').innerText = CODE_REPO[currentDevApi][currentDevLang];
+            document.getElementById('appleCodeFile').innerText = FILES[currentDevLang];
         }
 
         function copyAppleCode() {
-            navigator.clipboard.writeText(SNIPPETS[currentLang]);
+            navigator.clipboard.writeText(CODE_REPO[currentDevApi][currentDevLang]);
             const btn = document.getElementById('appleCopyText');
             btn.innerText = 'Copied';
             setTimeout(() => { btn.innerText = 'Copy'; }, 1500);
