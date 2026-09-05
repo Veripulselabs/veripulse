@@ -580,7 +580,7 @@
 
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 px-1">
                 <span id="devApiEndpointNotice" class="text-xs text-[#86868b] font-mono">
-                    Endpoint: <span class="text-[#0071e3]">GET https://veripulse-ixwr.onrender.com/v1/verify</span>
+                    Endpoint: <span class="text-[#0071e3]">GET https://api.veripulselabs.com/v1/verify</span>
                 </span>
                 <!-- Language Choice -->
                 <div class="apple-segmented-control flex items-center self-start sm:self-auto">
@@ -598,7 +598,7 @@
                         <span id="appleCopyText">Copy</span>
                     </button>
                 </div>
-                <pre class="p-6 text-xs sm:text-sm font-mono text-[#f5f5f7] leading-relaxed overflow-x-auto"><code id="appleCodeContent">curl -X GET "https://veripulse-ixwr.onrender.com/v1/verify?email=user@example.com" \
+                <pre class="p-6 text-xs sm:text-sm font-mono text-[#f5f5f7] leading-relaxed overflow-x-auto"><code id="appleCodeContent">curl -X GET "https://api.veripulselabs.com/v1/verify?email=user@example.com" \
      -H "Accept: application/json"</code></pre>
             </div>
         </div>
@@ -774,7 +774,7 @@
             </div>
             
             <div class="flex flex-wrap items-center justify-center gap-6 text-[#86868b]">
-                <a href="https://veripulse-ixwr.onrender.com/health" target="_blank" class="hover:text-white transition-colors">System Status</a>
+                <a href="https://api.veripulselabs.com/health" target="_blank" class="hover:text-white transition-colors">System Status</a>
                 <a href="mailto:support@veripulselabs.com" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-regular fa-envelope"></i> support@veripulselabs.com</a>
                 <a href="https://github.com/jasdebarreau3-cell/veripulse" target="_blank" class="hover:text-white transition-colors">GitHub</a>
                 <a href="https://rapidapi.com/jasdebarreau3/api/veripulse-email-verification-and-fraud-detection" target="_blank" class="hover:text-white transition-colors">RapidAPI</a>
@@ -789,7 +789,8 @@
 
     <!-- ==================== JAVASCRIPT ==================== -->
     <script>
-        const API_EMAIL = 'https://veripulse-ixwr.onrender.com/v1';
+        const PRIMARY_API_EMAIL = 'https://api.veripulselabs.com/v1';
+        const ORIGIN_API_EMAIL = 'https://veripulse-ixwr.onrender.com/v1';
         const API_PHONE = 'https://numguard-43tw.onrender.com/v1';
 
         let activeDemoMode = 'email'; // 'email' or 'phone'
@@ -848,11 +849,21 @@
             const start = performance.now();
 
             try {
-                const targetUrl = activeDemoMode === 'phone'
-                    ? `${API_PHONE}/validate?phone=${encodeURIComponent(val)}`
-                    : `${API_EMAIL}/verify?email=${encodeURIComponent(val)}`;
+                let res;
+                if (activeDemoMode === 'phone') {
+                    res = await fetch(`${API_PHONE}/validate?phone=${encodeURIComponent(val)}`);
+                } else {
+                    // Try primary branded custom domain, automatically fall back to Render origin if DNS is propagating
+                    try {
+                        res = await fetch(`${PRIMARY_API_EMAIL}/verify?email=${encodeURIComponent(val)}`);
+                        if (!res.ok && res.status !== 400 && res.status !== 422) {
+                            throw new Error('Primary edge unready');
+                        }
+                    } catch (e) {
+                        res = await fetch(`${ORIGIN_API_EMAIL}/verify?email=${encodeURIComponent(val)}`);
+                    }
+                }
 
-                const res = await fetch(targetUrl);
                 const end = performance.now();
                 const latency = Math.round(end - start);
 
@@ -861,7 +872,7 @@
                 latVal.innerText = `${latency}ms`;
                 latBadge.classList.remove('hidden');
 
-                if (res.ok) {
+                if (res && res.ok) {
                     const data = await res.json();
                     if (activeDemoMode === 'phone') {
                         renderNumGuardResult(data);
@@ -994,10 +1005,10 @@
         // ================= Developer Code Snippets =================
         const CODE_REPO = {
             email: {
-                endpoint: 'GET https://veripulse-ixwr.onrender.com/v1/verify',
-                curl: `curl -X GET "https://veripulse-ixwr.onrender.com/v1/verify?email=user@example.com" \\\n     -H "Accept: application/json"`,
-                python: `import requests\n\nres = requests.get(\n    "https://veripulse-ixwr.onrender.com/v1/verify",\n    params={"email": "user@example.com"}\n)\nprint(res.json())`,
-                javascript: `const res = await fetch("https://veripulse-ixwr.onrender.com/v1/verify?email=user@example.com");\nconst data = await res.json();\nconsole.log(data);`
+                endpoint: 'GET https://api.veripulselabs.com/v1/verify',
+                curl: `curl -X GET "https://api.veripulselabs.com/v1/verify?email=user@example.com" \\\n     -H "Accept: application/json"`,
+                python: `import requests\n\nres = requests.get(\n    "https://api.veripulselabs.com/v1/verify",\n    params={"email": "user@example.com"}\n)\nprint(res.json())`,
+                javascript: `const res = await fetch("https://api.veripulselabs.com/v1/verify?email=user@example.com");\nconst data = await res.json();\nconsole.log(data);`
             },
             phone: {
                 endpoint: 'GET https://numguard-43tw.onrender.com/v1/validate',
@@ -1006,10 +1017,10 @@
                 javascript: `const res = await fetch("https://numguard-43tw.onrender.com/v1/validate?phone=" + encodeURIComponent("+14155552671"));\nconst data = await res.json();\nconsole.log(data);`
             },
             unified: {
-                endpoint: 'GET https://veripulse-ixwr.onrender.com/v1/score',
-                curl: `curl -X GET "https://veripulse-ixwr.onrender.com/v1/score?email=user@example.com&phone=%2B14155552671" \\\n     -H "Accept: application/json"`,
-                python: `import requests\n\nres = requests.get(\n    "https://veripulse-ixwr.onrender.com/v1/score",\n    params={"email": "user@example.com", "phone": "+14155552671"}\n)\nprint(res.json())`,
-                javascript: `const res = await fetch("https://veripulse-ixwr.onrender.com/v1/score?email=user@example.com&phone=" + encodeURIComponent("+14155552671"));\nconst data = await res.json();\nconsole.log(data);`
+                endpoint: 'GET https://api.veripulselabs.com/v1/trust-score',
+                curl: `curl -X GET "https://api.veripulselabs.com/v1/trust-score?email=user@example.com&phone=%2B14155552671" \\\n     -H "Accept: application/json"`,
+                python: `import requests\n\nres = requests.get(\n    "https://api.veripulselabs.com/v1/trust-score",\n    params={"email": "user@example.com", "phone": "+14155552671"}\n)\nprint(res.json())`,
+                javascript: `const res = await fetch("https://api.veripulselabs.com/v1/trust-score?email=user@example.com&phone=" + encodeURIComponent("+14155552671"));\nconst data = await res.json();\nconsole.log(data);`
             }
         };
 
