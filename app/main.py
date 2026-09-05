@@ -54,6 +54,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.middleware("http")
+async def add_legal_compliance_headers(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["X-Terms-Of-Service"] = "https://veripulselabs.com/terms.html"
+    response.headers["X-Warranty-Disclaimer"] = "Heuristic scoring provided AS IS under VeriPulse Developer Terms"
+    response.headers["X-Liability-Cap"] = "Max aggregate liability capped at $50.00 USD under D.C. Law"
+    return response
+
 from fastapi.staticfiles import StaticFiles
 import os
 assets_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets")

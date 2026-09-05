@@ -418,6 +418,18 @@
                             Verify
                         </button>
                     </div>
+
+                    <!-- Mandatory Clickwrap Acceptance Checkbox -->
+                    <div class="mt-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-[#86868b]">
+                        <label class="flex items-center gap-2 cursor-pointer select-none">
+                            <input type="checkbox" id="termsCheckbox" checked class="w-3.5 h-3.5 rounded bg-black border-white/20 text-[#0071e3] focus:ring-0 cursor-pointer">
+                            <span>I accept the <a href="terms.html" target="_blank" class="text-white underline hover:text-[#0071e3]">Terms of Service</a> & <a href="privacy.html" target="_blank" class="text-white underline hover:text-[#0071e3]">Privacy Policy</a></span>
+                        </label>
+                        <span class="text-[10px] text-[#636366]">AS-IS Heuristics • Zero Retention</span>
+                    </div>
+                    <div id="termsErrorNotice" class="hidden mt-2 p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs text-center font-medium">
+                        <i class="fa-solid fa-circle-exclamation mr-1.5"></i> You must agree to the Terms of Service to execute verification queries.
+                    </div>
                 </form>
 
                 <!-- Preset Pills Email -->
@@ -831,6 +843,17 @@
 
         async function runAppleDemo(e) {
             if (e && e.preventDefault) e.preventDefault();
+            const termsBox = document.getElementById('termsCheckbox');
+            const termsNotice = document.getElementById('termsErrorNotice');
+            if (termsBox && !termsBox.checked) {
+                if (termsNotice) termsNotice.classList.remove('hidden');
+                termsBox.focus();
+                return;
+            } else if (termsNotice) {
+                termsNotice.classList.add('hidden');
+            }
+            try { localStorage.setItem('veripulse_terms_accepted', new Date().toISOString()); } catch (err) {}
+
             const input = document.getElementById('appleDemoInput');
             const btn = document.getElementById('appleDemoBtn');
             const val = (input.value || '').trim();
@@ -1054,9 +1077,127 @@
             setTimeout(() => { btn.innerText = 'Copy'; }, 1500);
         }
 
+        let pendingRedirectUrl = null;
+
+        function checkTermsAccepted() {
+            try { return localStorage.getItem('veripulse_terms_accepted') !== null; } catch(e) { return false; }
+        }
+
+        function setTermsAccepted() {
+            try { localStorage.setItem('veripulse_terms_accepted', new Date().toISOString()); } catch(e) {}
+            const b = document.getElementById('consentBanner');
+            if (b) b.classList.add('hidden');
+        }
+
+        function toggleModalBtn() {
+            const cb = document.getElementById('modalTermsCheckbox');
+            const btn = document.getElementById('modalAcceptBtn');
+            if (cb && btn) {
+                if (cb.checked) {
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-40', 'cursor-not-allowed');
+                } else {
+                    btn.disabled = true;
+                    btn.classList.add('opacity-40', 'cursor-not-allowed');
+                }
+            }
+        }
+
+        function openTermsModal(url) {
+            pendingRedirectUrl = url;
+            const m = document.getElementById('termsModal');
+            if (m) m.classList.remove('hidden');
+        }
+
+        function closeTermsModal() {
+            const m = document.getElementById('termsModal');
+            if (m) m.classList.add('hidden');
+            pendingRedirectUrl = null;
+        }
+
+        function confirmModalTerms() {
+            setTermsAccepted();
+            closeTermsModal();
+            if (pendingRedirectUrl) {
+                window.open(pendingRedirectUrl, '_blank');
+            }
+        }
+
+        function acceptGlobalConsent() {
+            setTermsAccepted();
+        }
+
+        function setupTermsInterceptors() {
+            if (!checkTermsAccepted()) {
+                const b = document.getElementById('consentBanner');
+                if (b) b.classList.remove('hidden');
+            }
+
+            document.querySelectorAll('a[href*="rapidapi.com"]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (!checkTermsAccepted()) {
+                        e.preventDefault();
+                        openTermsModal(link.href);
+                    }
+                });
+            });
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
             runAppleDemo(new Event('submit'));
+            setupTermsInterceptors();
         });
     </script>
+
+    <!-- ==================== TERMS & COMPLIANCE MODAL ==================== -->
+    <div id="termsModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="apple-card max-w-md w-full p-6 sm:p-8 border-white/20 shadow-2xl relative text-left">
+            <div class="flex items-center space-x-2.5 text-white mb-3">
+                <i class="fa-solid fa-shield-halved text-[#0071e3] text-base"></i>
+                <h3 class="text-lg font-semibold tracking-tight text-[#f5f5f7]">Accept Developer Terms</h3>
+            </div>
+            <p class="text-xs text-[#86868b] leading-relaxed mb-5">
+                Before generating an API key or integrating VeriPulse Labs, you must review and accept our developer compliance standards:
+            </p>
+            <div class="space-y-2.5 mb-6 text-xs text-[#86868b] bg-white/[0.02] p-3.5 rounded-xl border border-white/[0.06]">
+                <div class="flex items-start gap-2">
+                    <i class="fa-solid fa-check text-[#0071e3] mt-0.5 text-[10px]"></i>
+                    <span><strong>AS-IS Heuristics:</strong> Scoring and verdicts are probabilistic, not factual guarantees.</span>
+                </div>
+                <div class="flex items-start gap-2">
+                    <i class="fa-solid fa-check text-[#0071e3] mt-0.5 text-[10px]"></i>
+                    <span><strong>Zero Retention:</strong> Queries are processed in RAM and never stored or sold (GDPR & CCPA).</span>
+                </div>
+                <div class="flex items-start gap-2">
+                    <i class="fa-solid fa-check text-[#0071e3] mt-0.5 text-[10px]"></i>
+                    <span><strong>Liability Cap:</strong> Monetary liability is capped at $50 USD under District of Columbia jurisdiction.</span>
+                </div>
+            </div>
+            <label class="flex items-center gap-2.5 mb-6 cursor-pointer text-xs text-[#f5f5f7]">
+                <input type="checkbox" id="modalTermsCheckbox" onchange="toggleModalBtn()" class="w-4 h-4 rounded bg-black border-white/30 text-[#0071e3] focus:ring-0 cursor-pointer">
+                <span>I agree to the <a href="terms.html" target="_blank" class="text-[#0071e3] underline">Terms of Service</a> & <a href="privacy.html" target="_blank" class="text-[#0071e3] underline">Privacy Policy</a></span>
+            </label>
+            <div class="flex items-center gap-3">
+                <button type="button" onclick="confirmModalTerms()" id="modalAcceptBtn" disabled class="apple-pill-btn text-xs w-full opacity-40 cursor-not-allowed">
+                    Accept & Continue
+                </button>
+                <button type="button" onclick="closeTermsModal()" class="apple-pill-secondary text-xs w-28">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== FLOATING CONSENT BANNER ==================== -->
+    <div id="consentBanner" class="hidden fixed bottom-5 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-40 p-4 rounded-2xl bg-[#141416]/95 border border-white/[0.12] backdrop-blur-xl shadow-2xl text-xs text-[#86868b]">
+        <div class="flex items-start justify-between gap-3">
+            <p class="leading-relaxed">
+                By using VeriPulse, you accept our <a href="terms.html" target="_blank" class="text-white underline hover:text-[#0071e3]">Terms of Service</a> and <a href="privacy.html" target="_blank" class="text-white underline hover:text-[#0071e3]">Privacy Policy</a> (AS-IS heuristics, limited liability).
+            </p>
+            <button type="button" onclick="acceptGlobalConsent()" class="px-3.5 py-1.5 rounded-full bg-[#0071e3] text-white text-[11px] font-medium shrink-0 hover:bg-[#0077ed] transition-colors">
+                Accept
+            </button>
+        </div>
+    </div>
 </body>
 </html>
