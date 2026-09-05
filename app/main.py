@@ -36,6 +36,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from fastapi.staticfiles import StaticFiles
+import os
+assets_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets")
+if os.path.exists(assets_dir):
+    app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
+
 def verify_rapidapi_secret(x_rapidapi_proxy_secret: Optional[str] = Header(None)):
     if settings.RAPIDAPI_PROXY_SECRET:
         if not x_rapidapi_proxy_secret or x_rapidapi_proxy_secret != settings.RAPIDAPI_PROXY_SECRET:

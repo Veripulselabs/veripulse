@@ -1,7 +1,11 @@
 <div align="center">
 
+<img src="assets/veripulse_logo.png" alt="VeriPulse Labs Logo" width="620" />
+
+<br />
+
 # ⚡ VeriPulse Labs
-### Ultra-Fast Real-Time Email Verification & Fraud Detection API
+### Ultra-Fast Real-Time Trust Intelligence & Fraud Prevention API
 
 [![RapidAPI](https://img.shields.io/badge/RapidAPI-Marketplace%20Live-0052CC?style=for-the-badge&logo=rapidapi)](https://rapidapi.com/jasdebarreau3/api/veripulse-email-verification-and-fraud-detection)
 [![Latency](https://img.shields.io/badge/Latency-%3C40ms-brightgreen?style=for-the-badge)](https://rapidapi.com/jasdebarreau3/api/veripulse-email-verification-and-fraud-detection)
