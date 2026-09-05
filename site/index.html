@@ -130,6 +130,13 @@
             color: #ffffff;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
+
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details summary {
+            list-style: none;
+        }
     </style>
 </head>
 <body class="selection:bg-[#0071e3]/30 selection:text-white">
@@ -144,12 +151,14 @@
             </a>
 
             <!-- Editorial Nav Links -->
-            <nav class="hidden md:flex items-center space-x-9 text-xs font-normal text-[#86868b]">
+            <nav class="hidden md:flex items-center space-x-7 text-xs font-normal text-[#86868b]">
                 <a href="#overview" class="hover:text-[#f5f5f7] transition-colors">Overview</a>
                 <a href="#sandbox" class="hover:text-[#f5f5f7] transition-colors">Demo</a>
                 <a href="#highlights" class="hover:text-[#f5f5f7] transition-colors">Highlights</a>
                 <a href="#developers" class="hover:text-[#f5f5f7] transition-colors">Developers</a>
                 <a href="#pricing" class="hover:text-[#f5f5f7] transition-colors">Pricing</a>
+                <a href="#faq" class="hover:text-[#f5f5f7] transition-colors">FAQ</a>
+                <a href="mailto:support@veripulselabs.com" class="hover:text-[#f5f5f7] transition-colors">Support</a>
                 <a href="https://github.com/jasdebarreau3-cell/veripulse" target="_blank" rel="noopener noreferrer" class="hover:text-[#f5f5f7] transition-colors">GitHub</a>
             </nav>
 
@@ -480,16 +489,106 @@
         </div>
     </section>
 
+    <!-- ==================== FAQ SECTION ==================== -->
+    <section id="faq" class="py-28 max-w-3xl mx-auto px-4 sm:px-6 border-t border-white/[0.08]">
+        <div class="text-center mb-16">
+            <h2 class="text-xs font-semibold tracking-wider uppercase text-[#0071e3] mb-3">Questions & Answers</h2>
+            <h3 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#f5f5f7]">Frequently Asked Questions.</h3>
+            <p class="text-sm text-[#86868b] mt-2">Everything you need to know about our detection architecture, privacy, and support.</p>
+        </div>
+
+        <div class="divide-y divide-white/[0.08]">
+            <!-- FAQ 1 -->
+            <details class="group py-6 cursor-pointer">
+                <summary class="flex justify-between items-center list-none font-medium text-base sm:text-lg text-[#f5f5f7] hover:text-[#0071e3] transition-colors select-none">
+                    <span>How fast is VeriPulse in live production?</span>
+                    <span class="text-xl font-light text-[#86868b] transition-transform duration-300 group-open:rotate-45 ml-4 shrink-0">+</span>
+                </summary>
+                <div class="pt-3 text-sm text-[#86868b] leading-relaxed">
+                    Under 40 milliseconds average turnaround. We execute in-memory syntax checks, disposable domain blocklist lookups, and asynchronous non-blocking UDP DNS MX queries so user signups stay lightning-fast without lagging user experience.
+                </div>
+            </details>
+
+            <!-- FAQ 2 -->
+            <details class="group py-6 cursor-pointer">
+                <summary class="flex justify-between items-center list-none font-medium text-base sm:text-lg text-[#f5f5f7] hover:text-[#0071e3] transition-colors select-none">
+                    <span>How does disposable & temporary email detection work?</span>
+                    <span class="text-xl font-light text-[#86868b] transition-transform duration-300 group-open:rotate-45 ml-4 shrink-0">+</span>
+                </summary>
+                <div class="pt-3 text-sm text-[#86868b] leading-relaxed">
+                    We maintain an actively updated catalog of over 50,000+ known disposable domains (including Mailinator, GuerillaMail, TempMail, and 10MinuteMail) coupled with domain entropy heuristics to prevent fraudulent bot signups and free trial abuse.
+                </div>
+            </details>
+
+            <!-- FAQ 3 -->
+            <details class="group py-6 cursor-pointer">
+                <summary class="flex justify-between items-center list-none font-medium text-base sm:text-lg text-[#f5f5f7] hover:text-[#0071e3] transition-colors select-none">
+                    <span>Is VeriPulse GDPR and CCPA compliant?</span>
+                    <span class="text-xl font-light text-[#86868b] transition-transform duration-300 group-open:rotate-45 ml-4 shrink-0">+</span>
+                </summary>
+                <div class="pt-3 text-sm text-[#86868b] leading-relaxed">
+                    Yes. VeriPulse operates on strict zero-retention data privacy. We never store, log, or share the email addresses evaluated through our API. Verification checks are evaluated entirely in volatile memory and instantly discarded.
+                </div>
+            </details>
+
+            <!-- FAQ 4 -->
+            <details class="group py-6 cursor-pointer">
+                <summary class="flex justify-between items-center list-none font-medium text-base sm:text-lg text-[#f5f5f7] hover:text-[#0071e3] transition-colors select-none">
+                    <span>Can I integrate VeriPulse with my tech stack?</span>
+                    <span class="text-xl font-light text-[#86868b] transition-transform duration-300 group-open:rotate-45 ml-4 shrink-0">+</span>
+                </summary>
+                <div class="pt-3 text-sm text-[#86868b] leading-relaxed">
+                    Yes. VeriPulse is a standard HTTP REST API that returns lightweight JSON payloads. You can plug it into Next.js, Python, Ruby, PHP, Node.js, Go, or client-side form triggers in under 5 minutes. Ready-to-copy code snippets are available in our Developers section.
+                </div>
+            </details>
+
+            <!-- FAQ 5 -->
+            <details class="group py-6 cursor-pointer">
+                <summary class="flex justify-between items-center list-none font-medium text-base sm:text-lg text-[#f5f5f7] hover:text-[#0071e3] transition-colors select-none">
+                    <span>What happens if my volume exceeds the plan quota?</span>
+                    <span class="text-xl font-light text-[#86868b] transition-transform duration-300 group-open:rotate-45 ml-4 shrink-0">+</span>
+                </summary>
+                <div class="pt-3 text-sm text-[#86868b] leading-relaxed">
+                    Paid plans on RapidAPI feature continuous micro-metered overages ($0.002/req) so your user signup flow is never interrupted or throttled. You can also upgrade your tier anytime with zero downtime.
+                </div>
+            </details>
+
+            <!-- FAQ 6 -->
+            <details class="group py-6 cursor-pointer">
+                <summary class="flex justify-between items-center list-none font-medium text-base sm:text-lg text-[#f5f5f7] hover:text-[#0071e3] transition-colors select-none">
+                    <span>How do I reach technical support or request custom SLA volume?</span>
+                    <span class="text-xl font-light text-[#86868b] transition-transform duration-300 group-open:rotate-45 ml-4 shrink-0">+</span>
+                </summary>
+                <div class="pt-3 text-sm text-[#86868b] leading-relaxed">
+                    Our engineering team is directly accessible at <a href="mailto:support@veripulselabs.com" class="text-[#0071e3] hover:underline font-medium">support@veripulselabs.com</a>. Whether you need custom enterprise SLAs, high-volume batch pipelines, or integration assistance, we respond promptly.
+                </div>
+            </details>
+        </div>
+
+        <!-- Direct Support Callout Card -->
+        <div class="mt-14 p-8 rounded-2xl bg-[#141416] border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+            <div>
+                <h4 class="text-lg font-semibold text-[#f5f5f7]">Need direct assistance?</h4>
+                <p class="text-xs sm:text-sm text-[#86868b] mt-1">Our engineering team is here to help with integrations, custom quotas, or technical inquiries.</p>
+            </div>
+            <a href="mailto:support@veripulselabs.com" class="apple-pill-btn text-xs sm:text-sm shrink-0">
+                <i class="fa-regular fa-envelope"></i>
+                <span>support@veripulselabs.com</span>
+            </a>
+        </div>
+    </section>
+
     <!-- ==================== FOOTER ==================== -->
     <footer class="py-14 border-t border-white/[0.08] text-xs text-[#86868b] px-4 sm:px-6">
-        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
             <div class="flex items-center space-x-2 text-white">
                 <i class="fa-solid fa-shield-halved text-xs text-[#0071e3]"></i>
                 <span class="font-medium">VeriPulse Labs</span>
             </div>
             
-            <div class="flex items-center space-x-6 text-[#86868b]">
+            <div class="flex flex-wrap items-center justify-center gap-6 text-[#86868b]">
                 <a href="https://veripulse-ixwr.onrender.com/health" target="_blank" class="hover:text-white transition-colors">System Status</a>
+                <a href="mailto:support@veripulselabs.com" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-regular fa-envelope"></i> support@veripulselabs.com</a>
                 <a href="https://github.com/jasdebarreau3-cell/veripulse" target="_blank" class="hover:text-white transition-colors">GitHub</a>
                 <a href="https://rapidapi.com/jasdebarreau3/api/veripulse-email-verification-and-fraud-detection" target="_blank" class="hover:text-white transition-colors">RapidAPI</a>
                 <a href="https://github.com/jasdebarreau3-cell/veripulse/blob/main/LICENSE" target="_blank" class="hover:text-white transition-colors">MIT License</a>
