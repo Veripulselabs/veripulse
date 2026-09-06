@@ -1,4 +1,4 @@
-﻿# 🚀 RapidAPI Listing Blueprint: VeriPulse Trust Intelligence API
+# 🚀 RapidAPI Listing Blueprint: VeriPulse Trust Intelligence API
 
 Use this blueprint to configure your listing on the [RapidAPI Provider Studio](https://rapidapi.com/provider) in under 5 minutes.
 
@@ -80,14 +80,13 @@ curl -X POST "https://veripulse.p.rapidapi.com/v1/trust-score" \
 
 ## 3. Official Marketplace Pricing Tiers (Configured by Jazz)
 
-Configure these plans in the **Plans & Pricing** tab:
+Configure this plan in the **Plans & Pricing** tab (Remove all paid tiers):
 
 | Plan | Billing Type | Price | Monthly Quota | Overage Price | Target Audience |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Basic** | **Free** | **\.00 / month** | **1,000 requests** | Hard Limit (No overage) | Developers, testing, hackathons |
-| **Pro** | **Monthly Subscription** | **\.99 / month** | **15,000 requests** | \.002 / request | Bootstrapped SaaS, e-commerce stores |
-| **Ultra** | **Monthly Subscription** | **\.00 / month** | **60,000 requests** | \.0015 / request | High-growth startups, fintech, form builders |
-| **Mega (Business)** | **Monthly Subscription** | **\.00 / month** | **250,000 requests** | \.001 / request | Scaleups, marketing agencies, platforms |
+| **Basic** | **Free** | **$0.00 / month** | **1,000 requests** | Hard Limit (No overage) | Developers, testing, hackathons |
+
+*(All paid tiers—Pro, Ultra, Mega—are permanently disabled to maximize user adoption, traffic, and eliminate payment liability)*
 
 ---
 
